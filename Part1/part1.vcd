@@ -1,0 +1,163 @@
+$date
+	Tue May 20 20:37:38 2025
+$end
+$version
+	Icarus Verilog
+$end
+$timescale
+	1s
+$end
+$scope module testbench $end
+$var wire 8 ! ALURESULT [7:0] $end
+$var reg 3 " ALUOP [2:0] $end
+$var reg 8 # OPERAND1 [7:0] $end
+$var reg 8 $ OPERAND2 [7:0] $end
+$scope module uut $end
+$var wire 8 % DATA1 [7:0] $end
+$var wire 8 & DATA2 [7:0] $end
+$var wire 3 ' SELECT [2:0] $end
+$var wire 8 ( RESULT [7:0] $end
+$var wire 8 ) I3 [7:0] $end
+$var wire 8 * I2 [7:0] $end
+$var wire 8 + I1 [7:0] $end
+$var wire 8 , I0 [7:0] $end
+$scope module add_unit $end
+$var wire 8 - DATA1 [7:0] $end
+$var wire 8 . DATA2 [7:0] $end
+$var reg 8 / RESULT [7:0] $end
+$upscope $end
+$scope module and_unit $end
+$var wire 8 0 DATA1 [7:0] $end
+$var wire 8 1 DATA2 [7:0] $end
+$var reg 8 2 RESULT [7:0] $end
+$upscope $end
+$scope module mux_unit $end
+$var wire 8 3 I1 [7:0] $end
+$var wire 8 4 I2 [7:0] $end
+$var wire 3 5 SELECT [2:0] $end
+$var wire 8 6 I3 [7:0] $end
+$var wire 8 7 I0 [7:0] $end
+$var reg 8 8 RESULT [7:0] $end
+$upscope $end
+$scope module or_unit $end
+$var wire 8 9 DATA1 [7:0] $end
+$var wire 8 : DATA2 [7:0] $end
+$var reg 8 ; RESULT [7:0] $end
+$upscope $end
+$scope module uut $end
+$var wire 8 < DATA2 [7:0] $end
+$var reg 8 = RESULT [7:0] $end
+$upscope $end
+$upscope $end
+$upscope $end
+$enddefinitions $end
+$comment Show the parameter values. $end
+$dumpall
+$end
+#0
+$dumpvars
+b1000001 =
+b1000001 <
+b1000001 ;
+b1000001 :
+b0 9
+bx 8
+b1000001 7
+b1000001 6
+b0 5
+b0 4
+b1000001 3
+b0 2
+b1000001 1
+b0 0
+b1000001 /
+b1000001 .
+b0 -
+b1000001 ,
+b1000001 +
+b0 *
+b1000001 )
+bx (
+b0 '
+b1000001 &
+b0 %
+b1000001 $
+b0 #
+b0 "
+bx !
+$end
+#1
+b1000001 !
+b1000001 (
+b1000001 8
+#10
+b11110 ,
+b11110 7
+b11110 =
+b1001011 +
+b1001011 /
+b1001011 3
+b1100 *
+b1100 2
+b1100 4
+b111111 )
+b111111 6
+b111111 ;
+b1 "
+b1 '
+b1 5
+b11110 $
+b11110 &
+b11110 .
+b11110 1
+b11110 :
+b11110 <
+b101101 #
+b101101 %
+b101101 -
+b101101 0
+b101101 9
+#12
+b1001011 !
+b1001011 (
+b1001011 8
+#20
+b111010 ,
+b111010 7
+b111010 =
+b111110 )
+b111110 6
+b111110 ;
+b100010 *
+b100010 2
+b100010 4
+b1100000 +
+b1100000 /
+b1100000 3
+b10 "
+b10 '
+b10 5
+b111010 $
+b111010 &
+b111010 .
+b111010 1
+b111010 :
+b111010 <
+b100110 #
+b100110 %
+b100110 -
+b100110 0
+b100110 9
+#21
+b100010 !
+b100010 (
+b100010 8
+#30
+b11 "
+b11 '
+b11 5
+#31
+b111110 !
+b111110 (
+b111110 8
+#40
