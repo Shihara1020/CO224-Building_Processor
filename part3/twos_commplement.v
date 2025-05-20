@@ -5,7 +5,9 @@ module testbench;
     twos_commplement uut(in,out);
 
     initial begin
-       $monitor("");
+       $monitor("Time: %0t  Number : %d  Negative_number: %d",$time,in,out);
+       $dumpfile("two.vcd");
+       $dumpvars(0,testbench);
 
        in=2;
        #5
@@ -24,7 +26,7 @@ input [7:0]in;
 output reg signed[7:0] out;
 
 always @(in) begin
-    out=#1 (~in)+1;
+    #1 out=(~in)+1;
 end
 
 
