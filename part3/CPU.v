@@ -24,6 +24,8 @@ wire signed[7:0] NEGATIVENUMBER;
 wire signed[7:0] external_wire1,external_wire2;
 wire signed[7:0] RESULT;
 
+
+//program counter
 Instruction_decode unit1(INSTRUCTION,OPCODE,IMMEDIATE,READREG1,READREG2,WRITEREG);
 control_unit unit3(OPCODE,WRITEENABLE,ALUSRC,ALUOP,NEMUX);
 reg_file  unit2(IN,OUT1,OUT2,RESULT,READREG1,READREG2,WRITEENABLE,CLK,RESET);

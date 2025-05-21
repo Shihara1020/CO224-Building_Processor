@@ -1,5 +1,7 @@
 module reg_file(IN,OUT1,OUT2,INADDRESS,OUT1ADDRESS,OUT2ADDRESS,WRITE,CLK,RESET);
-    input [2:0]OUT1ADDRESS,OUT2ADDRESS,INADDRESS;
+    input [2:0]OUT1ADDRE
+    
+    SS,OUT2ADDRESS,INADDRESS;
     input signed[7:0] IN;
     input CLK,RESET,WRITE;
     output reg signed[7:0]OUT2,OUT1;

@@ -4,7 +4,6 @@ module FORWARD(DATA2,RESULT);
     output reg signed [7:0] RESULT;
     
     always @(DATA2) begin
-        //#1 RESULT=DATA2;
         RESULT=DATA2;
     end
 
@@ -18,7 +17,6 @@ module ADD(DATA1,DATA2,RESULT);
     output reg signed  [7:0]RESULT;
     
     always @(DATA1,DATA2) begin
-        // #2 RESULT=DATA1+DATA2;
         RESULT=DATA1+DATA2;
     end
 
@@ -32,7 +30,6 @@ module AND(DATA1,DATA2,RESULT);
     output reg signed[7:0]RESULT;
 
     always @(DATA1,DATA2) begin
-        // #1 RESULT=DATA1&DATA2;
         RESULT=DATA1&DATA2;
     end
 
@@ -46,7 +43,6 @@ module OR(DATA1,DATA2,RESULT);
     output reg signed[7:0]RESULT;
 
     always @(DATA1,DATA2) begin
-        // #1 RESULT=DATA1|DATA2;
         RESULT=DATA1|DATA2;
     end
     

@@ -1,19 +1,22 @@
+//GROUP-06
+//Lab05- part1
+
 // Creat the testbench module
 module testbench;
-    // Declare the Operand1 and operand2 as signed 8-bit register
+    // Declare the Operand1 and Operand2 as signed 8-bit register
     reg signed[7:0]OPERAND1,OPERAND2;
 
-    // Declare ALUOP as 3-bit register to contro; ALU operation
+    // Declare ALUOP as 3-bit register to control
     reg[2:0]ALUOP;
 
-    // ALURESULT is an 8-bit signed wire for the output of the ALU
+    // 8-bit signed wire for the output of the ALU
     wire signed[7:0] ALURESULT;
     
-    // Instantiate the ALU modul
+    // Instantiate the ALU module
     alu uut(OPERAND1,OPERAND2,ALURESULT,ALUOP);
     
 
-    // Creat the initial block for simulation
+    // Create the initial block for simulation
     initial begin
         // Display output whenever there is any change in operands or ALU operation
         $monitor("TIME=%0t : OP1:%0d OP2:%0d ALUOP:%0b RESULT:%0d(%8b)", $time, OPERAND1, OPERAND2, ALUOP, ALURESULT,ALURESULT);
@@ -26,7 +29,7 @@ module testbench;
         OPERAND1=8'd0;  
         OPERAND2=8'd65;
         ALUOP  =3'b000;
-        #10;   // add 10 time units delay
+        #10;   // 10 time units delay
 
         // Test ADD Operation (ALUOP = 001)
         OPERAND1=8'd45;
@@ -55,14 +58,14 @@ endmodule
 
 
 // FORWARD operation module
-// Passes DATA2 directly to RESULT
+// Passes DATA2 to RESULT
 module FORWARD(DATA2,RESULT);
     input signed [7:0]DATA2;
     output reg signed [7:0] RESULT;
     
-    // Update RESULT whenever DATA2 changes (delay 1 time unit)
+    // Update RESULT whenever DATA2 changes
     always @(DATA2) begin
-        #1 RESULT=DATA2;
+        #1 RESULT=DATA2;         // 1 time unit delay
     end
 endmodule
 
@@ -75,9 +78,9 @@ module ADD(DATA1,DATA2,RESULT);
     input signed [7:0]DATA2;
     output reg signed  [7:0]RESULT;
    
-    // Update RESULT as the sum of DATA1 and DATA2 (delay 2 time units)
+    // Update RESULT as the sum of DATA1 and DATA2 
     always @(DATA1,DATA2) begin
-        #2 RESULT=DATA1+DATA2;
+        #2 RESULT=DATA1+DATA2;    // 2 time unit delay
     end
 
 endmodule
@@ -91,9 +94,9 @@ module AND(DATA1,DATA2,RESULT);
     input signed[7:0]DATA2;
     output reg signed[7:0]RESULT;
     
-    // Update RESULT with bitwise AND of DATA1 and DATA2 (delay 1 time unit)
+    // Update RESULT with bitwise AND of DATA1 and DATA2 
     always @(DATA1,DATA2) begin
-        #1 RESULT=DATA1&DATA2;
+        #1 RESULT=DATA1&DATA2;    // 1 time unit delay
     end
 
 endmodule
@@ -106,16 +109,16 @@ module OR(DATA1,DATA2,RESULT);
     input signed[7:0]DATA2;
     output reg signed[7:0]RESULT;
     
-   // Update RESULT with bitwise OR of DATA1 and DATA2 (delay 1 time unit)
+   // Update RESULT with bitwise OR of DATA1 and DATA2 
     always @(DATA1,DATA2) begin
-        #1 RESULT=DATA1|DATA2;
+        #1 RESULT=DATA1|DATA2;  // 1 time unit delay
     end
     
 
 endmodule
 
 
-// 4-to-1 multiplexer module
+// 4x1 multiplexer module
 // Selects one of the 4 inputs based on SELECT signal
 module mux(I0,I1,I2,I3,SELECT,RESULT);
     input signed [7:0]I0,I1,I2,I3;
@@ -124,7 +127,7 @@ module mux(I0,I1,I2,I3,SELECT,RESULT);
 
     // Update RESULT based on SELECT value
     always@(I0,I1,I2,I3,SELECT) begin
-        case (SELECT)
+        case (SELECT) 
             3'b000:  RESULT=I0; // FORWARD output  
             3'b001:  RESULT=I1; // ADD ouput
             3'b010:  RESULT=I2; // AND ouput

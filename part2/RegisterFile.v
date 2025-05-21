@@ -1,14 +1,19 @@
 // Testbench for reg_file module
 module reg_file_tb;
     
-    // Declare inputs to the reg_file
+    // Declare inputs 
     reg [7:0] WRITEDATA;
     reg [2:0] WRITEREG, READREG1, READREG2;
-    reg CLK, RESET, WRITEENABLE; 
+    reg CLK, RESET, WRITEENABLE;
+    
+    // Declare outputs 
     wire [7:0] REGOUT1, REGOUT2;
     
+    // Instantiate the reg_file module
     reg_file myregfile(WRITEDATA, REGOUT1, REGOUT2, WRITEREG, READREG1, READREG2, WRITEENABLE, CLK, RESET);
-       
+    
+
+    // Initial block for setting inputs and observing outputs
     initial
     begin
         CLK = 1'b1;
@@ -82,19 +87,20 @@ endmodule
 
 
 
-// Creat the module of reg_file
+// Register File Module 
 module reg_file(IN,OUT1,OUT2,INADDRESS,OUT1ADDRESS,OUT2ADDRESS,WRITE,CLK,RESET);
     input [2:0]OUT1ADDRESS,OUT2ADDRESS,INADDRESS;
     input signed[7:0] IN;
     input CLK,RESET,WRITE;
     output reg signed[7:0]OUT2,OUT1;
     
-    // creat the 8-bit registers 8 because register file haas 8 register
+    //each register of 8 registers store 8-bit value
     reg signed [7:0] register0,register1,register2,register3,register4,register5,register6,register7;
 
-    // reset and write ooperation are synchronsied ther for reset and and write operation perform in postive clock edge
+
+     // Reset and Write operations are synchronous (triggered on positive clock edge)
     always @(posedge CLK) begin
-        // if reset is 0ne all register are set to zero
+        // If RESET is active, clear all registers
         if (RESET) begin
             #1
             register0 = 8'd0;
@@ -106,8 +112,8 @@ module reg_file(IN,OUT1,OUT2,INADDRESS,OUT1ADDRESS,OUT2ADDRESS,WRITE,CLK,RESET);
             register6 = 8'd0;
             register7 = 8'd0;
         end
-        
-        // if write is one then wirte the value in give address register
+
+        // If WRITE is active, store data into selected register    
         if (WRITE) begin
             #1
             case (INADDRESS)
@@ -124,7 +130,7 @@ module reg_file(IN,OUT1,OUT2,INADDRESS,OUT1ADDRESS,OUT2ADDRESS,WRITE,CLK,RESET);
 
     end
     
-    // 
+     // Asynchronous read logic (with #2 time delay)
     always @(OUT1ADDRESS,OUT2ADDRESS,CLK) begin
         #2
         case (OUT1ADDRESS)
