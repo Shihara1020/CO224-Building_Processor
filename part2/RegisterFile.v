@@ -1,5 +1,7 @@
+// Testbench for reg_file module
 module reg_file_tb;
     
+    // Declare inputs to the reg_file
     reg [7:0] WRITEDATA;
     reg [2:0] WRITEREG, READREG1, READREG2;
     reg CLK, RESET, WRITEENABLE; 
@@ -11,27 +13,31 @@ module reg_file_tb;
     begin
         CLK = 1'b1;
         
+        // generate files needed to plot the waveform using GTKWave
+        $dumpfile("task2.vcd");
+		$dumpvars(0, reg_file_tb);
+        
         // assign values with time to input signals to see output 
         RESET = 1'b0;
         WRITEENABLE = 1'b0;
         
-        #4  //4
+        #4
         RESET = 1'b1;
         READREG1 = 3'd0;
         READREG2 = 3'd4;
         
-        #6  //10
+        #6
         RESET = 1'b0;
         
-        #2  //12
+        #2
         WRITEREG = 3'd2;
         WRITEDATA = 8'd95;
         WRITEENABLE = 1'b1;
         
-        #7  //19
+        #7
         WRITEENABLE = 1'b0;
         
-        #1  //20
+        #1
         READREG1 = 3'd2;
         
         #7
@@ -56,7 +62,7 @@ module reg_file_tb;
         WRITEENABLE = 1'b0;
         
         #6
-        WRITEREG = 3'd1;
+        WRITEREG = -3'd1;
         WRITEDATA = 8'd50;
         WRITEENABLE = 1'b1;
         
@@ -65,23 +71,6 @@ module reg_file_tb;
         
         #10
         $finish;
-    end
-
-
-    integer i;
-    initial begin
-        // generate files needed to plot the waveform using GTKWave
-        $dumpfile("task2.vcd");
-		$dumpvars(0, reg_file_tb);
-
-        $dumpvars(1, myregfile.register0);
-        $dumpvars(1, myregfile.register1);
-        $dumpvars(1, myregfile.register2);
-        $dumpvars(1, myregfile.register3);
-        $dumpvars(1, myregfile.register4);
-        $dumpvars(1, myregfile.register5);
-        $dumpvars(1, myregfile.register6);
-        $dumpvars(1, myregfile.register7);
     end
     
     // clock signal generation
@@ -93,17 +82,19 @@ endmodule
 
 
 
-
+// Creat the module of reg_file
 module reg_file(IN,OUT1,OUT2,INADDRESS,OUT1ADDRESS,OUT2ADDRESS,WRITE,CLK,RESET);
     input [2:0]OUT1ADDRESS,OUT2ADDRESS,INADDRESS;
     input signed[7:0] IN;
     input CLK,RESET,WRITE;
     output reg signed[7:0]OUT2,OUT1;
-
+    
+    // creat the 8-bit registers 8 because register file haas 8 register
     reg signed [7:0] register0,register1,register2,register3,register4,register5,register6,register7;
 
-
+    // reset and write ooperation are synchronsied ther for reset and and write operation perform in postive clock edge
     always @(posedge CLK) begin
+        // if reset is 0ne all register are set to zero
         if (RESET) begin
             #1
             register0 = 8'd0;
@@ -115,7 +106,8 @@ module reg_file(IN,OUT1,OUT2,INADDRESS,OUT1ADDRESS,OUT2ADDRESS,WRITE,CLK,RESET);
             register6 = 8'd0;
             register7 = 8'd0;
         end
-
+        
+        // if write is one then wirte the value in give address register
         if (WRITE) begin
             #1
             case (INADDRESS)
@@ -131,7 +123,8 @@ module reg_file(IN,OUT1,OUT2,INADDRESS,OUT1ADDRESS,OUT2ADDRESS,WRITE,CLK,RESET);
         end
 
     end
-
+    
+    // 
     always @(OUT1ADDRESS,OUT2ADDRESS,CLK) begin
         #2
         case (OUT1ADDRESS)
