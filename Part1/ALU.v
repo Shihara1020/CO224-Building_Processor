@@ -11,6 +11,11 @@ module testbench;
         $dumpvars(0,testbench);
 
         //Test forward
+
+
+
+
+        
         OPERAND1=8'd0;
         OPERAND2=8'd65;
         ALUOP  =3'b000;
