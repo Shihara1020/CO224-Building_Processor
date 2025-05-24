@@ -2,37 +2,72 @@
 `include "RegisterFile.v"
 `include "PC.v"
 `include "MUX_2.v"
-`include "instruction_memory"
-`include "contro_unit"
+`include "instruction_memory.v"
+`include "controlUnit.v"
 `include "ALU.v"
 
 module cpu(PC,INSTRUCTION,CLK,RESET);
 
-input [31:0]INSTRUCTION;
-input CLK,RESET;
-output PC;
+// ==== Inputs and Outputs ====
+input [31:0] INSTRUCTION;
+input CLK, RESET;
+output [31:0] PC; 
 
-wire [7:0]OPCODE,IMMEDIATE;
-wire[2:0] READREG1,READREG2;
 
-wire signed[7:0] OUT1,OUT2;
-wire WRITEENABLE;
+// ==== Internal Wires ====
+// Instruction decoding
+wire [7:0] OPCODE, IMMEDIATE;
+wire [2:0] READREG1, READREG2, WRITEREG;
 
-wire WRITEENABLE,ALUSRC,NEMUX;
+
+// Control Unit
+wire WRITEENABLE, ALUSRC, NEMUX;
 wire [2:0] ALUOP;
-wire signed[7:0] NEGATIVENUMBER;
-wire signed[7:0] external_wire1,external_wire2;
-wire signed[7:0] RESULT;
 
 
-//program counter
-Instruction_decode unit1(INSTRUCTION,OPCODE,IMMEDIATE,READREG1,READREG2,WRITEREG);
-control_unit unit3(OPCODE,WRITEENABLE,ALUSRC,ALUOP,NEMUX);
-reg_file  unit2(IN,OUT1,OUT2,RESULT,READREG1,READREG2,WRITEENABLE,CLK,RESET);
-twos_commplement unit3(OUT2,NEGATIVENUMBER);
-mux_unit unit4(OUT1,NEGATIVENUMBER,NEMUX,external_wire1);
-mux_unit unit5(IMMEDIATE,external_wire1,ALUSRC,external_wire2);
-alu unit6(external_wire2,REGOUT1,RESULT,ALUOP);
+// Register File
+wire signed [7:0] REGOUT1, REGOUT2, WRITEDATA;
+
+
+// Two's Complement
+wire signed [7:0] NEGATIVENUMBER;
+
+// Mux outputs
+wire signed [7:0] mux1_out, mux2_out;
+
+
+
+
+
+// ==== Module Connections ====
+
+
+// start to pc counter -> decode the instruction -> Control unit -> Register File->2's complemet->Mux1 ->mux2->ALU
+
+// 1. Program Counter-done
+pc_unit PCUNIT(RESET,CLK,PC);
+
+// 2. Instruction Decode - done
+Instruction_decode DECODER(INSTRUCTION,OPCODE,IMMEDIATE,READREG1,READREG2,WRITEREG);
+
+// 3. Control Unit - done
+control_unit control(OPCODE,WRITEENABLE,ALUSRC,ALUOP,NEMUX);
+
+// 4. Register File 
+reg_file  REGFILE(WRITEDATA,REGOUT1,REGOUT2,WRITEREG,READREG1,READREG2,WRITEENABLE,CLK,RESET);
+
+// 5. Two's Complement
+twos_commplement twos(REGOUT2,NEGATIVENUMBER);
+
+
+// 6. First Mux: Select between REGOUT2 and NEGATIVENUMBER
+mux_unit MUX1(REGOUT2,NEGATIVENUMBER,NEMUX,mux1_out);
+
+// 7. Second Mux: Select between mux1_out and IMMEDIATE
+mux_unit MUX2(IMMEDIATE,mux1_out,ALUSRC,mux2_out);
+
+// 8. ALU
+alu ALU(REGOUT1,mux2_out,WRITEDATA,ALUOP);
 
 
 endmodule

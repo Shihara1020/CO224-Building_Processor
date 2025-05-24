@@ -1,15 +1,17 @@
+// Register File Module 
 module reg_file(IN,OUT1,OUT2,INADDRESS,OUT1ADDRESS,OUT2ADDRESS,WRITE,CLK,RESET);
-    input [2:0]OUT1ADDRE
-    
-    SS,OUT2ADDRESS,INADDRESS;
+    input [2:0]OUT1ADDRESS,OUT2ADDRESS,INADDRESS;
     input signed[7:0] IN;
     input CLK,RESET,WRITE;
     output reg signed[7:0]OUT2,OUT1;
-
+    
+    //each register of 8 registers store 8-bit value
     reg signed [7:0] register0,register1,register2,register3,register4,register5,register6,register7;
 
 
+     // Reset and Write operations are synchronous (triggered on positive clock edge)
     always @(posedge CLK) begin
+        // If RESET is active, clear all registers
         if (RESET) begin
             #1
             register0 = 8'd0;
@@ -22,6 +24,7 @@ module reg_file(IN,OUT1,OUT2,INADDRESS,OUT1ADDRESS,OUT2ADDRESS,WRITE,CLK,RESET);
             register7 = 8'd0;
         end
 
+        // If WRITE is active, store data into selected register    
         if (WRITE) begin
             #1
             case (INADDRESS)
@@ -37,9 +40,10 @@ module reg_file(IN,OUT1,OUT2,INADDRESS,OUT1ADDRESS,OUT2ADDRESS,WRITE,CLK,RESET);
         end
 
     end
-
+    
+     // Asynchronous read logic 
     always @(OUT1ADDRESS,OUT2ADDRESS,CLK) begin
-        #2
+        #2  // #2 time dalay 
         case (OUT1ADDRESS)
             3'b000 : OUT1 = register0; 
             3'b001 : OUT1 = register1; 

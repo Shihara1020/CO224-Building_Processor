@@ -3,7 +3,7 @@ input [7:0] OPCODE;
 output reg [2:0] ALUOP;
 output reg ALUSRC;
 output reg WRITEENABLE;
-output NEMUX;  //the enter the negative number
+output reg NEMUX;  //the enter the negative number
 
 /*       OP-CODE
 
@@ -15,7 +15,8 @@ output NEMUX;  //the enter the negative number
 	loadi = "00000101";
 */
 
-always @(*) begin
+always @(OPCODE) begin
+    #1
     if (OPCODE==8'b00000000) begin   //add
         WRITEENABLE=1'b1;
         ALUOP=3'b001;

@@ -1,3 +1,6 @@
+//GROUP-06
+//Lab05- part2
+
 // Testbench for reg_file module
 module reg_file_tb;
     
@@ -130,9 +133,9 @@ module reg_file(IN,OUT1,OUT2,INADDRESS,OUT1ADDRESS,OUT2ADDRESS,WRITE,CLK,RESET);
 
     end
     
-     // Asynchronous read logic (with #2 time delay)
+     // Asynchronous read logic 
     always @(OUT1ADDRESS,OUT2ADDRESS,CLK) begin
-        #2
+        #2  // #2 time dalay 
         case (OUT1ADDRESS)
             3'b000 : OUT1 = register0; 
             3'b001 : OUT1 = register1; 

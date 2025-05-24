@@ -1,8 +1,11 @@
 module testbench;
+    //Declar the Operand1 and operand2 as reg data type
     reg signed[7:0]OPERAND1,OPERAND2;
+    // Aluop is 3 bit thereofre it declar the reg array
     reg[2:0]ALUOP;
+    //
     wire signed[7:0] ALURESULT;
-    // add the comment
+
     alu uut(OPERAND1,OPERAND2,ALURESULT,ALUOP);
 
     initial begin
@@ -11,11 +14,6 @@ module testbench;
         $dumpvars(0,testbench);
 
         //Test forward
-
-
-
-
-        
         OPERAND1=8'd0;
         OPERAND2=8'd65;
         ALUOP  =3'b000;
