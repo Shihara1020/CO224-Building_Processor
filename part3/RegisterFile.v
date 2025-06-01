@@ -1,15 +1,36 @@
-// Register File Module 
+//============================================================================
+//                                       Register File Module
+// 8-register file with dual read ports and single write port
+// 8 registers (R0-R7), each storing 8-bit signed values
+//============================================================================ 
 module reg_file(IN,OUT1,OUT2,INADDRESS,OUT1ADDRESS,OUT2ADDRESS,WRITE,CLK,RESET);
-    input [2:0]OUT1ADDRESS,OUT2ADDRESS,INADDRESS;
-    input signed[7:0] IN;
-    input CLK,RESET,WRITE;
-    output reg signed[7:0]OUT2,OUT1;
+    //========== INPUT PORT DECLARATIONS ==========
+    input [2:0] OUT1ADDRESS;    // 3-bit address for first read port (selects R0-R7)
+    input [2:0] OUT2ADDRESS;    // 3-bit address for second read port (selects R0-R7)  
+    input [2:0] INADDRESS;      // 3-bit address for write port (selects R0-R7)
+    input signed[7:0] IN;       // 8-bit signed data to write into selected register
+    input CLK;                  // Clock signal for synchronous operations
+    input RESET;                // Reset signal (active high) - clears all registers
+    input WRITE;                // Write enable signal (active high)
     
-    //each register of 8 registers store 8-bit value
-    reg signed [7:0] register0,register1,register2,register3,register4,register5,register6,register7;
+    //========== OUTPUT PORT DECLARATIONS ==========
+    output reg signed[7:0] OUT2;  // 8-bit signed data from second read port
+    output reg signed[7:0] OUT1;  // 8-bit signed data from first read port
+    
+    //========== INTERNAL REGISTER DECLARATIONS ==========
+    // 8 individual registers, each storing 8-bit signed values
+    reg signed [7:0] register0;   // Register R0 (address 000)
+    reg signed [7:0] register1;   // Register R1 (address 001)
+    reg signed [7:0] register2;   // Register R2 (address 010)
+    reg signed [7:0] register3;   // Register R3 (address 011)
+    reg signed [7:0] register4;   // Register R4 (address 100)
+    reg signed [7:0] register5;   // Register R5 (address 101)
+    reg signed [7:0] register6;   // Register R6 (address 110)
+    reg signed [7:0] register7;   // Register R7 (address 111)
 
 
-     // Reset and Write operations are synchronous (triggered on positive clock edge)
+    //========== SYNCHRONOUS WRITE AND RESET LOGIC ==========
+    // Reset and Write operations are synchronous (triggered on positive clock edge)
     always @(posedge CLK) begin
         // If RESET is active, clear all registers
         if (RESET) begin

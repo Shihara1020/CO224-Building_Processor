@@ -1,25 +1,36 @@
-// FORWARD operation module
-// Passes DATA2 to RESULT
+// ======================================================================
+//                              ALU Module 
+// Description: Complete ALU with multiple arithmetic and logic operations
+// =======================================================================
+
+
+// ------------------------------------------------
+//           FORWARD Operation Module
+// ------------------------------------------------
+// Passes DATA2 to RESULT with 1 time unit delay
+
 module FORWARD(DATA2,RESULT);
     input signed [7:0]DATA2;
     output reg signed [7:0] RESULT;
     
-    // Update RESULT whenever DATA2 changes
+    // Combinational logic with propagation delay
     always @(DATA2) begin
         #1 RESULT=DATA2;         // 1 time unit delay
     end
 endmodule
 
 
+// --------------------------------------------
+//          ADD Operation Module
+// ---------------------------------------------
+// Computes DATA1 + DATA2 with 2 time units delay
 
-// ADD operation module
-// Adds DATA1 and DATA2 and outputs the result
 module ADD(DATA1,DATA2,RESULT);
     input signed [7:0]DATA1;
     input signed [7:0]DATA2;
     output reg signed  [7:0]RESULT;
    
-    // Update RESULT as the sum of DATA1 and DATA2 
+    // Adder implementation 
     always @(DATA1,DATA2) begin
         #2 RESULT=DATA1+DATA2;    // 2 time unit delay
     end
@@ -27,15 +38,17 @@ module ADD(DATA1,DATA2,RESULT);
 endmodule
 
 
+// -------------------------------------------
+//          AND Operation Module
+// --------------------------------------------
+// Bitwise AND operation with 1 time unit delay
 
-// AND operation module
-// Performs bitwise AND between DATA1 and DATA2
 module AND(DATA1,DATA2,RESULT);
     input signed [7:0]DATA1;
     input signed[7:0]DATA2;
     output reg signed[7:0]RESULT;
     
-    // Update RESULT with bitwise AND of DATA1 and DATA2 
+    // Bitwise AND implementation
     always @(DATA1,DATA2) begin
         #1 RESULT=DATA1&DATA2;    // 1 time unit delay
     end
@@ -43,14 +56,17 @@ module AND(DATA1,DATA2,RESULT);
 endmodule
 
 
-// OR operation module
-// Performs bitwise OR between DATA1 and DATA2
+// -------------------------------------------
+//         OR Operation Module
+// -------------------------------------------
+// Bitwise OR operation with 1 time unit delay
+
 module OR(DATA1,DATA2,RESULT);
     input signed[7:0]DATA1;
     input signed[7:0]DATA2;
     output reg signed[7:0]RESULT;
     
-   // Update RESULT with bitwise OR of DATA1 and DATA2 
+   // Bitwise OR implementation
     always @(DATA1,DATA2) begin
         #1 RESULT=DATA1|DATA2;  // 1 time unit delay
     end
@@ -59,8 +75,11 @@ module OR(DATA1,DATA2,RESULT);
 endmodule
 
 
-// 4x1 multiplexer module
-// Selects one of the 4 inputs based on SELECT signal
+// --------------------------------------
+//         4:1 Multiplexer Module
+// --------------------------------------
+// Operation selector with zero-default safety
+
 module mux(I0,I1,I2,I3,SELECT,RESULT);
     input signed [7:0]I0,I1,I2,I3;
     input [2:0] SELECT;
@@ -69,10 +88,10 @@ module mux(I0,I1,I2,I3,SELECT,RESULT);
     // Update RESULT based on SELECT value
     always@(I0,I1,I2,I3,SELECT) begin
         case (SELECT) 
-            3'b000:  RESULT=I0; // FORWARD output  
-            3'b001:  RESULT=I1; // ADD ouput
-            3'b010:  RESULT=I2; // AND ouput
-            3'b011:  RESULT=I3; // OR output 
+            3'b000:  RESULT=I0;             // FORWARD output  
+            3'b001:  RESULT=I1;             // ADD ouput
+            3'b010:  RESULT=I2;             // AND ouput
+            3'b011:  RESULT=I3;             // OR output 
             default: RESULT=0;
         endcase
     end 
@@ -80,8 +99,17 @@ module mux(I0,I1,I2,I3,SELECT,RESULT);
 
 endmodule
 
-// ALU module
-// Connects operation modules and uses multiplexer to select final result
+
+
+// ===========================================
+//             Main ALU Module
+// ===========================================
+// Operations:
+//               000: Forward DATA2
+//               001: Addition
+//               010: Bitwise AND
+//               011: Bitwise OR
+//               others: Output 0
 module alu(DATA1,DATA2,RESULT,SELECT);
     input signed[7:0]DATA1;
     input signed[7:0]DATA2;

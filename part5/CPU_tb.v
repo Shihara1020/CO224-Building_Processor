@@ -1,6 +1,6 @@
 // Computer Architecture (CO224) - Lab 05
 // Design: Testbench of Integrated CPU of Simple Processor
-// Author: D.M.E.S. Dewagedara / W.S.S. Perera 
+// Author: Isuru Nawinne
 
 `include "CPU.v"
 
