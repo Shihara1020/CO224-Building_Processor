@@ -1,35 +1,35 @@
-// module test_multiplier;
-//     reg [7:0] DATA1, DATA2;
-//     wire [7:0] OUTPUT;
+module test_multiplier;
+    reg [7:0] DATA1, DATA2;
+    wire [7:0] OUTPUT;
 
-//     // Instantiate your multiplier module
-//     multiply uut (
-//         .DATA1(DATA1),
-//         .DATA2(DATA2),
-//         .OUTPUT(OUTPUT)
-//     );
+    // Instantiate your multiplier module
+    multiply uut (
+        .DATA1(DATA1),
+        .DATA2(DATA2),
+        .RESULT(OUTPUT)
+    );
 
-//     initial begin
-//         $display("DATA1\tDATA2\tExpected\tOUTPUT");
+    initial begin
+        $display("DATA1\tDATA2\tExpected\tOUTPUT");
 
-//         DATA1 = 8'd3; DATA2 = 8'd2; #10;
-//         $display("%d\t%d\t%d\t\t%d", DATA1, DATA2, (DATA1 * DATA2) & 8'hFF, OUTPUT);
+        DATA1 = 8'd3; DATA2 = 8'd2; #10;
+        $display("%d\t%d\t%d\t\t%d", DATA1, DATA2, (DATA1 * DATA2) & 8'hFF, OUTPUT);
 
-//         DATA1 = 8'd7; DATA2 = 8'd5; #10;
-//         $display("%d\t%d\t%d\t\t%d", DATA1, DATA2, (DATA1 * DATA2) & 8'hFF, OUTPUT);
+        DATA1 = 8'd7; DATA2 = 8'd5; #10;
+        $display("%d\t%d\t%d\t\t%d", DATA1, DATA2, (DATA1 * DATA2) & 8'hFF, OUTPUT);
 
-//         DATA1 = 8'd12; DATA2 = 8'd12; #10;
-//         $display("%d\t%d\t%d\t\t%d", DATA1, DATA2, (DATA1 * DATA2) & 8'hFF, OUTPUT);
+        DATA1 = 8'd12; DATA2 = 8'd12; #10;
+        $display("%d\t%d\t%d\t\t%d", DATA1, DATA2, (DATA1 * DATA2) & 8'hFF, OUTPUT);
 
-//         DATA1 = 8'd255; DATA2 = 8'd1; #10;
-//         $display("%d\t%d\t%d\t\t%d", DATA1, DATA2, (DATA1 * DATA2) & 8'hFF, OUTPUT);
+        DATA1 = 8'd255; DATA2 = 8'd1; #10;
+        $display("%d\t%d\t%d\t\t%d", DATA1, DATA2, (DATA1 * DATA2) & 8'hFF, OUTPUT);
 
-//         DATA1 = 8'd255; DATA2 = 8'd255; #10;
-//         $display("%d\t%d\t%d\t\t%d", DATA1, DATA2, (DATA1 * DATA2) & 8'hFF, OUTPUT);
+        DATA1 = 8'd255; DATA2 = 8'd255; #10;
+        $display("%d\t%d\t%d\t\t%d", DATA1, DATA2, (DATA1 * DATA2) & 8'hFF, OUTPUT);
 
-//         $finish;
-//     end
-// endmodule
+        $finish;
+    end
+endmodule
 
 
 
