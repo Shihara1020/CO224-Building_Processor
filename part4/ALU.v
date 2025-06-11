@@ -131,7 +131,8 @@ module alu(DATA1,DATA2,RESULT,SELECT,ZERO);
     
     // Instantiate multiplexer to select one of the operation outputs
     mux mux_unit(I0,I1,I2,I3,SELECT,RESULT);
-    //chech data1-dat2 is eqault to zero
-    assign ZERO=(RESULT==0)?1'b1:1'b0;
+
+    // Zero flag generation - checks if RESULT equals zero
+    assign ZERO=(RESULT==0)?1'b1:1'b0; 
 
 endmodule

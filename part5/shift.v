@@ -135,65 +135,65 @@ endmodule
 
 
 
-module LEFTshift_tb;
+// module LEFTshift_tb;
 
-    reg [7:0] DATA1;
-    reg [2:0] DATA2;
-    wire [7:0] OUTPUT;
+//     reg [7:0] DATA1;
+//     reg [2:0] DATA2;
+//     wire [7:0] OUTPUT;
 
-    // Instantiate the module under test
-    LEFTshift uut (
-        .DATA1(DATA1),
-        .DATA2(DATA2),
-        .OUTPUT(OUTPUT)
-    );
+//     // Instantiate the module under test
+//     LEFTshift uut (
+//         .DATA1(DATA1),
+//         .DATA2(DATA2),
+//         .OUTPUT(OUTPUT)
+//     );
 
-    initial begin
-        $display("Time\tDATA1\tDATA2\tOUTPUT");
-        $monitor("%0t\t%b\t%d\t%b", $time, DATA1, DATA2, OUTPUT);
+//     initial begin
+//         $display("Time\tDATA1\tDATA2\tOUTPUT");
+//         $monitor("%0t\t%b\t%d\t%b", $time, DATA1, DATA2, OUTPUT);
 
-        // Test case 1: Shift 0 positions
-        DATA1 = 8'b10101010;
-        DATA2 = 3'b000;
-        #10;
+//         // Test case 1: Shift 0 positions
+//         DATA1 = 8'b10101010;
+//         DATA2 = 3'b000;
+//         #10;
 
-        // Test case 2: Shift 1 position
-        DATA1 = 8'b10101010;
-        DATA2 = 3'b001;
-        #10;
+//         // Test case 2: Shift 1 position
+//         DATA1 = 8'b10101010;
+//         DATA2 = 3'b001;
+//         #10;
 
-        // Test case 3: Shift 2 positions
-        DATA1 = 8'b11110000;
-        DATA2 = 3'b010;
-        #10;
+//         // Test case 3: Shift 2 positions
+//         DATA1 = 8'b11110000;
+//         DATA2 = 3'b010;
+//         #10;
 
-        // Test case 4: Shift 3 positions
-        DATA1 = 8'b00001111;
-        DATA2 = 3'b011;
-        #10;
+//         // Test case 4: Shift 3 positions
+//         DATA1 = 8'b00001111;
+//         DATA2 = 3'b011;
+//         #10;
 
-        // Test case 5: Shift 4 positions
-        DATA1 = 8'b11001100;
-        DATA2 = 3'b100;
-        #10;
+//         // Test case 5: Shift 4 positions
+//         DATA1 = 8'b11001100;
+//         DATA2 = 3'b100;
+//         #10;
 
-        // Test case 6: Shift 5 positions
-        DATA1 = 8'b00010001;
-        DATA2 = 3'b101;
-        #10;
+//         // Test case 6: Shift 5 positions
+//         DATA1 = 8'b00010001;
+//         DATA2 = 3'b101;
+//         #10;
 
-        // Test case 7: Shift 6 positions
-        DATA1 = 8'b10000001;
-        DATA2 = 3'b110;
-        #10;
+//         // Test case 7: Shift 6 positions
+//         DATA1 = 8'b10000001;
+//         DATA2 = 3'b110;
+//         #10;
 
-        // Test case 8: Shift 7 positions
-        DATA1 = 8'b11111111;
-        DATA2 = 3'b111;
-        #10;
+//         // Test case 8: Shift 7 positions
+//         DATA1 = 8'b11111111;
+//         DATA2 = 3'b111;
+//         #10;
 
-        // End of test
-        $finish;
-    end
+//         // End of test
+//         $finish;
+//     end
 
-endmodule
+// endmodule

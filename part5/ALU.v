@@ -83,7 +83,7 @@ module mux(I0,I1,I2,I3,I4,I5,I6,I7,SELECT,RESULT);
     output reg signed[7:0] RESULT;
 
     // Update RESULT based on SELECT value
-    always@(I0,I1,I2,I3,I4,I5,I6,SELECT) begin
+    always@(I0,I1,I2,I3,I4,I5,I6,I7,SELECT) begin
         case (SELECT) 
             3'b000:  RESULT=I0; // FORWARD output  
             3'b001:  RESULT=I1; // ADD ouput
@@ -102,10 +102,10 @@ endmodule
 // ALU module
 // Connects operation modules and uses multiplexer to select final result
 module alu(DATA1,DATA2,RESULT,SELECT,ZERO);
-    input signed[7:0]DATA1;
-    input signed[7:0]DATA2;
-    input [2:0]SELECT;
-    output signed[7:0]RESULT;
+    input signed [7:0]DATA1;
+    input signed [7:0]DATA2;
+    input [2:0] SELECT;
+    output signed [7:0]RESULT;
     output ZERO;
 
     // Internal wires for operation outputs

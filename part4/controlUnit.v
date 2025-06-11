@@ -19,8 +19,8 @@ module control_unit(OPCODE,WRITEENABLE,ALUSRC,ALUOP,NEMUX,BRANCH,JUMP);
                     // OP_OR    = 8'b00000011;  
                     // OP_MOV   = 8'b00000100;  
                     // OP_LOADI = 8'b00000101;
-                    // OP_j     = "00000110";    // Unconditional jump: PC = target_address
-                    // OP_beq   = "00000111";    // Branch if equal: if(RS1==RS2) PC = target_address
+                    // OP_j     = 8'b00000110;    // Unconditional jump: PC = target_address
+                    // OP_beq   = 8'b00000111;    // Branch if equal: if(RS1==RS2) PC = target_address
     
 
     //========================================================================
@@ -94,7 +94,7 @@ module control_unit(OPCODE,WRITEENABLE,ALUSRC,ALUOP,NEMUX,BRANCH,JUMP);
             NEMUX=1'b0;                      // Negation not used 
             BRANCH=1'b0;                     // Not a conditional branch
             JUMP=1'b1;                       // Enable unconditional jump
-        end--
+        end
         else if (OPCODE==8'b00000111) begin  // BEQ (Branch if Equal) o
             WRITEENABLE=1'b0;                // No register write 
             ALUOP=3'b001;                    // ALU performs subtraction for comparison
