@@ -1,5 +1,5 @@
 `include "ALUSECTION/multiplier.v"
-`include "ALUSECTION/shift.v"
+`include "ALUSECTION/logicalshift.v"
 // SELECTION CODE:
 //      FOEWARD - 000   (I0)
 //      ADD     - 001   (I1)
@@ -7,7 +7,7 @@
 //      OR      - 011   (I3)
 
 //      MULT    - 100   (I4)  - done
-//      SLL      - 101   (I5) - done  
+//      SL      - 101   (I5) - done     LOGIGAL SHIFT  
 //      SRA     - 110   (I6)  - done
 //      ROR     - 111   (I7)  - done
 
@@ -91,7 +91,7 @@ module mux(I0,I1,I2,I3,I4,I5,I6,I7,SELECT,RESULT);
             3'b010:  RESULT=I2; // AND ouput
             3'b011:  RESULT=I3; // OR output
             3'b100:  RESULT=I4; // multiplier output 
-            3'b101:  RESULT=I5; // Leftshift
+            3'b101:  RESULT=I5; // Logicalshift
             3'b110:  RESULT=I6; // Arithmatic Right Shift
             3'b111:  RESULT=I7; // Rotate right
         endcase
@@ -118,11 +118,12 @@ module alu(DATA1,DATA2,RESULT,SELECT,ZERO);
     AND and_unit(DATA1,DATA2,I2);
     OR or_unit(DATA1,DATA2,I3);
     multiply MUL(DATA1,DATA2,I4);
-    LEFTshift Lshift(DATA1,DATA2,I5);
-    //      SRA     - 110   (I6) - SETPIN-1
-    //      ROR     - 111   (I7)  -SETPIN-0
-    RIGHTshift Rshift(DATA1,DATA2,I6,1'b1);   //Right shift
-    RIGHTshift RORshirt(DATA1,DATA2,I7,1'b0);  //Rotate right
+    Logicalshift Lshift(DATA1,DATA2,I5);
+//      ROR     - 111   (I7)  -SETPIN-00
+//      SRL     - 101         -SETPIN-10
+//      SRA     - 110   (I6) - SETPIN-11
+    RIGHTshift Rshift(DATA1,DATA2,I6,2'b11);   //ARITHMATIC Right shift
+    RIGHTshift RORshirt(DATA1,DATA2,I7,2'b00);  //Rotate right
     
     // Instantiate multiplexer to select one of the operation outputs
     mux mux_unit(I0,I1,I2,I3,I4,I5,I6,I7,SELECT,RESULT);

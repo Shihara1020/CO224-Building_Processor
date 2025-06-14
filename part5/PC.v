@@ -1,7 +1,8 @@
-module pc_unit(RESET,CLK,PC,BRANCH,ZERO,JUMP,OFFSET,BNE);
+module pc_unit(RESET,CLK,PC,BRANCH,ZERO,OFFSET);
     input RESET;
     input CLK;
-    input BRANCH,ZERO,JUMP,BNE;
+    input [1:0] BRANCH;
+    input ZERO;
     input signed [7:0]OFFSET;
 
     output reg [31:0] PC;
@@ -10,14 +11,13 @@ module pc_unit(RESET,CLK,PC,BRANCH,ZERO,JUMP,OFFSET,BNE);
     wire signed [31:0] PC_plus_four;
     wire signed [31:0] BRANCH_TARGET;
 
-    wire Branching,BNE_branch;
+    wire Branching;
     wire selector;
     wire signed [31:0]OFFSET_EXTENDED;
 
 
-    and and_gate1(Branching,ZERO,BRANCH);
-    and and_gate2(BNE_branch,~ZERO,BNE);
-    or  or_gate1(selector,JUMP,Branching,BNE_branch);
+    and and_gate1(Branching,ZERO,BRANCH[1]);
+    xor  xor_gate1(selector,BRANCH[0],Branching);
 
     assign #1 PC_plus_four=PC+4;
     assign OFFSET_EXTENDED= {{24{OFFSET[7]}}, OFFSET} << 2;

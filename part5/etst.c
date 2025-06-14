@@ -35,8 +35,6 @@ Generated output file	: <your_assembly_file_name>.machine
 
 #define LINE_SIZE 512
 
-// Global variable to track if current instruction is srl
-int is_srl_instruction = 0;
 
 int main( int argc, char *argv[] )
 {
@@ -146,7 +144,6 @@ int main( int argc, char *argv[] )
 		in_token = strtok(pline, delim);
 		line_count++;
 		int count = 0;
-		is_srl_instruction = 0; 
 		while (in_token != NULL)
 		{
 			count++;
@@ -173,10 +170,7 @@ int main( int argc, char *argv[] )
 			else if (strcasecmp(in_token, "sll") == 0)
 				strcpy(out_token, op_sll);
 			else if (strcasecmp(in_token, "srl") == 0)
-			{
 				strcpy(out_token, op_srl);
-				is_srl_instruction = 1; // Set flag for srl instruction
-			}
 			else if (strcasecmp(in_token, "sra") == 0)
 				strcpy(out_token, op_sra);
 			else if (strcasecmp(in_token, "ror") == 0)
@@ -245,16 +239,7 @@ int main( int argc, char *argv[] )
 					if (toupper(in_token[2 + i]) == 'F')
 						strcpy(out_token + (4 * i), "1111");
 				}
-
-
-				// If this is an srl instruction, set the MSB of the immediate value to 1
-				if (is_srl_instruction && count == 4) // count == 4 means we're processing the immediate value (4th token)
-				{
-					out_token[0] = '1'; // Set MSB to 1 for srl instruction
-				}
 			}
-
-
 
 			// Handling comments and empty lines
 			else if (strcmp(in_token, "\n") == 0 || (strstr(in_token, "//") && (strstr(in_token, "//") == in_token)))

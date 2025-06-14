@@ -21,7 +21,8 @@ module cpu(PC,INSTRUCTION,CLK,RESET);
 
 
     // Control Unit
-    wire WRITEENABLE, ALUSRC, NEMUX,BRANCH,JUMP,BNE;
+    wire WRITEENABLE, ALUSRC, NEMUX;
+    wire [1:0]BRANCH;
     wire [2:0] ALUOP;
 
 
@@ -47,13 +48,13 @@ module cpu(PC,INSTRUCTION,CLK,RESET);
     // start to pc counter -> decode the instruction -> Control unit -> Register File->2's complemet->Mux1 ->mux2->ALU
 
     // 1. Program Counter-done
-    pc_unit PCUNIT(RESET,CLK,PC,BRANCH,ZERO,JUMP,OFFSET,BNE);
+    pc_unit PCUNIT(RESET,CLK,PC,BRANCH,ZERO,OFFSET);
 
     // 2. Instruction Decode - done
     Instruction_decode DECODER(INSTRUCTION,OPCODE,IMMEDIATE,READREG1,READREG2,WRITEREG,OFFSET);
 
     // 3. Control Unit - done
-    control_unit control(OPCODE,WRITEENABLE,ALUSRC,ALUOP,NEMUX,BRANCH,JUMP,BNE);
+    control_unit control(OPCODE,WRITEENABLE,ALUSRC,ALUOP,NEMUX,BRANCH);
 
     // 4. Register File -done
     reg_file  REGFILE(WRITEDATA,REGOUT1,REGOUT2,WRITEREG,READREG1,READREG2,WRITEENABLE,CLK,RESET);
