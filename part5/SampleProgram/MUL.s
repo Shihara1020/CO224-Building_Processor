@@ -1,7 +1,6 @@
-loadi 0 0x07  
-loadi 1 0x03
-loadi 2 0x06 
-mult 2 1 1
-mult 3 0 2
-mult 4 0 2
-mult 5 4 1
+loadi 0 0x08  
+loadi 1 0x09
+loadi 2 0x0C 
+mult 3 1 0
+mult 4 0 0
+mult 5 1 2

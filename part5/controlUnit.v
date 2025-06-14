@@ -1,159 +1,182 @@
-module control_unit(OPCODE,WRITEENABLE,ALUSRC,ALUOP,NEMUX,BRANCH);
-input [7:0] OPCODE;
-output reg [2:0] ALUOP;
-output reg ALUSRC;
-output reg WRITEENABLE;
-output reg NEMUX;  //the enter the negative number
-output reg [1:0]BRANCH;
+//============================================================================
+//                                   Control Unit Module
+// Generates all control signals for CPU datapath based on instruction opcode
+// Implements control logic for 14 different instruction types including:
+// - Arithmetic operations (ADD, SUB, MULT)
+// - Logic operations (AND, OR)
+// - Data movement (MOV, LOADI)
+// - Branch operations (J, BEQ, BNE)
+// - Shift/Rotate operations (SL, SRA, ROR)
+//============================================================================
 
-/*       OP-CODE
+module control_unit(OPCODE, WRITEENABLE, ALUSRC, ALUOP, NEMUX, BRANCH);
 
-	add   = "00000000";  -done
-    sub   = "00000001";  -done 
-	and   = "00000010";  -done
-	or 	  = "00000011";  -done
-	mov   = "00000100";  -done
-	loadi = "00000101";  -done
-    j	  = "00000110";  -done
-	beq	  = "00000111";  -done
+    //========== INPUT PORT DECLARATIONS ==========
+    input [7:0] OPCODE;             // 8-bit operation code from instruction decoder
 
-    bne   = "00001000";  -done
-    mult  = "00001001";  -done
-    sl   = "00001010";  -done (logical left shift and right shift)
-    srl   = "00001011";  -no need 
-    sra   = "00001100";  -done
-    ror   = "00001101";  -done
-*/
+    //========== OUTPUT PORT DECLARATIONS ==========
+    output reg [2:0] ALUOP;         // 3-bit ALU operation selector
+    output reg ALUSRC;              // ALU source selector (0: immediate, 1: register)
+    output reg WRITEENABLE;         // Register file write enable (1: write, 0: no write)
+    output reg NEMUX;               // Negative number MUX selector (0: positive, 1: two's complement)
+    output reg [1:0] BRANCH;        // 2-bit branch control signals
 
+    //========== INSTRUCTION SET ARCHITECTURE ==========
+    /*
+     * OPCODE DEFINITIONS:
+     * 00000000 (0x00) - ADD    : Add two registers
+     * 00000001 (0x01) - SUB    : Subtract two registers  
+     * 00000010 (0x02) - AND    : Bitwise AND of two registers
+     * 00000011 (0x03) - OR     : Bitwise OR of two registers
+     * 00000100 (0x04) - MOV    : Move register to register
+     * 00000101 (0x05) - LOADI  : Load immediate value to register
+     * 00000110 (0x06) - J      : Unconditional jump
+     * 00000111 (0x07) - BEQ    : Branch if equal (zero flag set)
+     * 00001000 (0x08) - BNE    : Branch if not equal (zero flag clear)
+     * 00001001 (0x09) - MULT   : Multiply two registers
+     * 00001010 (0x0A) - SL     : Shift left logical
+     * 00001100 (0x0C) - SRA    : Shift right arithmetic
+     * 00001101 (0x0D) - ROR    : Rotate right
+     */
 
-/*
+    //========== CONTROL SIGNAL ENCODING ==========
+    /*
+     * ALUOP Encoding:
+     * 000 - Forward (pass-through for MOV/LOADI)
+     * 001 - Add/Subtract operation
+     * 010 - Bitwise AND
+     * 011 - Bitwise OR
+     * 100 - Multiplication
+     * 101 - Shift left logical
+     * 110 - Shift right arithmetic
+     * 111 - Rotate right
+     *
+     * BRANCH Encoding:
+     * 00 - Normal sequential execution
+     * 01 - Unconditional jump
+     * 10 - Branch if equal (BEQ)
+     * 11 - Branch if not equal (BNE)
+     */
 
-        BRANCH
-    00 -Normal flow
-    01-j
-    10-beq
-    11-bnq
+    //========== COMBINATIONAL CONTROL LOGIC ==========
+    // Control signals are generated combinationally based on opcode
+    // 1 time unit delay for signal propagation
+    always @(OPCODE) begin
+        #1
 
-
-*/
-always @(OPCODE) begin
-    #1
-    if (OPCODE==8'b00000000) begin   //add  -done
-        WRITEENABLE=1'b1;
-        ALUOP=3'b001;
-        ALUSRC=1'b1;
-        NEMUX=1'b0;
-        BRANCH=2'b00;
-
-    end
-    else if (OPCODE==8'b00000001) begin  //sub   -done
-        WRITEENABLE=1'b1;
-        ALUOP=3'b001;
-        ALUSRC=1'b1;
-        NEMUX=1'b1;
-        BRANCH=2'b00;
-
+        // === ARITHMETIC OPERATIONS ===
         
-    end
-    else if (OPCODE==8'b00000010) begin  //and   -done
-        WRITEENABLE=1'b1;
-        ALUOP=3'b010;
-        ALUSRC=1'b1;
-        NEMUX=1'b0;
-        BRANCH=2'b00;
-
-    end
-    else if (OPCODE==8'b00000011) begin //or   -done
-        WRITEENABLE=1'b1;
-        ALUOP=3'b011;
-        ALUSRC=1'b1;
-        NEMUX=1'b0;
-        BRANCH=2'b00;
-
+        if (OPCODE == 8'b00000000) begin        // ADD instruction
+            WRITEENABLE = 1'b1;     // Enable write to destination register
+            ALUOP = 3'b001;         // ALU performs addition
+            ALUSRC = 1'b1;          // Use register as second operand
+            NEMUX = 1'b0;           // Use positive value (no two's complement)
+            BRANCH = 2'b00;         // Sequential execution (no branch)
+        end
         
-    end
-    else if (OPCODE==8'b00000100) begin //mov   -done
-        WRITEENABLE=1'b1;
-        ALUOP=3'b000;
-        ALUSRC=1'b1;
-        NEMUX=1'b0;
-        BRANCH=2'b00;
-
+        else if (OPCODE == 8'b00000001) begin   // SUB instruction
+            WRITEENABLE = 1'b1;     // Enable write to destination register
+            ALUOP = 3'b001;         // ALU performs addition (with negative second operand)
+            ALUSRC = 1'b1;          // Use register as second operand
+            NEMUX = 1'b1;           // Use two's complement for subtraction (A - B = A + (-B))
+            BRANCH = 2'b00;         // Sequential execution (no branch)
+        end
         
-    end
-    else if (OPCODE==8'b00000101) begin //loadi   -done
-        WRITEENABLE=1'b1;
-        ALUOP=3'b000;
-        ALUSRC=1'b0;
-        NEMUX=1'b0;
-        BRANCH=2'b00;
+        else if (OPCODE == 8'b00001001) begin   // MULT instruction
+            WRITEENABLE = 1'b1;     // Enable write to destination register
+            ALUOP = 3'b100;         // ALU performs multiplication
+            ALUSRC = 1'b1;          // Use register as second operand
+            NEMUX = 1'b0;           // Use positive value
+            BRANCH = 2'b00;         // Sequential execution (no branch)
+        end
 
+        // === LOGICAL OPERATIONS ===
         
-    end   
-    else if (OPCODE==8'b00000110) begin //J -done
-        WRITEENABLE=1'b0;
-        ALUOP=3'b000;   //dont use
-        ALUSRC=1'b0;    //dont use
-        NEMUX=1'b0;     //dont use
-        BRANCH=2'b01;
-
-    end
-    else if (OPCODE==8'b00000111) begin //beq  -done
-        WRITEENABLE=1'b0;
-        ALUOP=3'b001;
-        ALUSRC=1'b1;
-        NEMUX=1'b1;
-        BRANCH=2'b10;
-
+        else if (OPCODE == 8'b00000010) begin   // AND instruction
+            WRITEENABLE = 1'b1;     // Enable write to destination register
+            ALUOP = 3'b010;         // ALU performs bitwise AND
+            ALUSRC = 1'b1;          // Use register as second operand
+            NEMUX = 1'b0;           // Use positive value
+            BRANCH = 2'b00;         // Sequential execution (no branch)
+        end
         
-    end
-    //add new featutes
-    else if (OPCODE==8'b00001000) begin //bne  -done
-        WRITEENABLE=1'b0;
-        ALUOP=3'b001;
-        ALUSRC=1'b1;
-        NEMUX=1'b1;
-        BRANCH=2'b11;
+        else if (OPCODE == 8'b00000011) begin   // OR instruction
+            WRITEENABLE = 1'b1;     // Enable write to destination register
+            ALUOP = 3'b011;         // ALU performs bitwise OR
+            ALUSRC = 1'b1;          // Use register as second operand
+            NEMUX = 1'b0;           // Use positive value
+            BRANCH = 2'b00;         // Sequential execution (no branch)
+        end
 
-    end
-
-    
-    else if (OPCODE==8'b00001001) begin //mult  -done
-        WRITEENABLE=1'b1;
-        ALUOP=3'b100;
-        ALUSRC=1'b1;
-        NEMUX=1'b0;
-        BRANCH=2'b00;
-
+        // === DATA MOVEMENT OPERATIONS ===
         
-    end
-
-    else if (OPCODE==8'b00001010) begin //sl  -done
-        WRITEENABLE=1'b1;
-        ALUOP=3'b101;
-        ALUSRC=1'b0;
-        NEMUX=1'b0;
-        BRANCH=2'b00;
-
+        else if (OPCODE == 8'b00000100) begin   // MOV instruction
+            WRITEENABLE = 1'b1;     // Enable write to destination register
+            ALUOP = 3'b000;         // ALU forwards input (pass-through)
+            ALUSRC = 1'b1;          // Use register as source
+            NEMUX = 1'b0;           // Use positive value
+            BRANCH = 2'b00;         // Sequential execution (no branch)
+        end
         
-    end
+        else if (OPCODE == 8'b00000101) begin   // LOADI instruction
+            WRITEENABLE = 1'b1;     // Enable write to destination register
+            ALUOP = 3'b000;         // ALU forwards input (pass-through)
+            ALUSRC = 1'b0;          // Use immediate value as source
+            NEMUX = 1'b0;           // Use positive value
+            BRANCH = 2'b00;         // Sequential execution (no branch)
+        end
 
-    else if (OPCODE==8'b00001100) begin //sra -done
-        WRITEENABLE=1'b1;
-        ALUOP=3'b110;
-        ALUSRC=1'b0;
-        NEMUX=1'b0;
-        BRANCH=2'b00;
-
+        // === BRANCH AND JUMP OPERATIONS ===
         
-    end
-    else if (OPCODE==8'b00001101) begin //ror -done
-        WRITEENABLE=1'b1;
-        ALUOP=3'b111;
-        ALUSRC=1'b0;
-        NEMUX=1'b0;
-        BRANCH=2'b00;
+        else if (OPCODE == 8'b00000110) begin   // J (Jump) instruction
+            WRITEENABLE = 1'b0;     // No register write needed
+            ALUOP = 3'b000;         // ALU operation not used
+            ALUSRC = 1'b0;          // Source selection not used
+            NEMUX = 1'b0;           // Sign selection not used
+            BRANCH = 2'b01;         // Unconditional jump
+        end
+        
+        else if (OPCODE == 8'b00000111) begin   // BEQ (Branch if Equal) instruction
+            WRITEENABLE = 1'b0;     // No register write needed
+            ALUOP = 3'b001;         // ALU performs subtraction to set zero flag
+            ALUSRC = 1'b1;          // Use register for comparison
+            NEMUX = 1'b1;           // Use two's complement for comparison (A - B)
+            BRANCH = 2'b10;         // Branch if zero flag is set
+        end
+        
+        else if (OPCODE == 8'b00001000) begin   // BNE (Branch if Not Equal) instruction
+            WRITEENABLE = 1'b0;     // No register write needed
+            ALUOP = 3'b001;         // ALU performs subtraction to set zero flag
+            ALUSRC = 1'b1;          // Use register for comparison
+            NEMUX = 1'b1;           // Use two's complement for comparison (A - B)
+            BRANCH = 2'b11;         // Branch if zero flag is clear
+        end
 
+        // === SHIFT AND ROTATE OPERATIONS ===
+        
+        else if (OPCODE == 8'b00001010) begin   // SL (Shift Left) instruction
+            WRITEENABLE = 1'b1;     // Enable write to destination register
+            ALUOP = 3'b101;         // ALU performs left shift
+            ALUSRC = 1'b0;          // Use immediate value as shift amount
+            NEMUX = 1'b0;           // Use positive value
+            BRANCH = 2'b00;         // Sequential execution (no branch)
+        end
+        
+        else if (OPCODE == 8'b00001100) begin   // SRA (Shift Right Arithmetic) instruction
+            WRITEENABLE = 1'b1;     // Enable write to destination register
+            ALUOP = 3'b110;         // ALU performs arithmetic right shift
+            ALUSRC = 1'b0;          // Use immediate value as shift amount
+            NEMUX = 1'b0;           // Use positive value
+            BRANCH = 2'b00;         // Sequential execution (no branch)
+        end
+        
+        else if (OPCODE == 8'b00001101) begin   // ROR (Rotate Right) instruction
+            WRITEENABLE = 1'b1;     // Enable write to destination register
+            ALUOP = 3'b111;         // ALU performs rotate right
+            ALUSRC = 1'b0;          // Use immediate value as rotate amount
+            NEMUX = 1'b0;           // Use positive value
+            BRANCH = 2'b00;         // Sequential execution (no branch)
+        end
     end
-end
+
 endmodule
