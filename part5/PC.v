@@ -1,31 +1,3 @@
-// module pc_tb;
-// reg CLK,RESET;
-// wire [31:0]pc;
-
-// pc_unit PCtest(RESET,CLK,pc);
-
-// initial begin 
-//     CLK=1'b1;
-//     forever #4 CLK=~CLK;
-// end
-
-// initial begin
-//     #15
-//     RESET=1;
-//     #4
-//     RESET=0;
-//     #50
-//     $finish;
-// end
-
-// initial begin
-//     $monitor("Time = %3d | reset =%d  | pc= %d\n ",$time,RESET,pc);
-// end
-
-// endmodule
-
-
-
 module pc_unit(RESET,CLK,PC,BRANCH,ZERO,JUMP,OFFSET,BNE);
     input RESET;
     input CLK;
@@ -43,9 +15,9 @@ module pc_unit(RESET,CLK,PC,BRANCH,ZERO,JUMP,OFFSET,BNE);
     wire signed [31:0]OFFSET_EXTENDED;
 
 
-    and (Branching,ZERO,BRANCH);
-    and (BNE_branch,~ZERO,BNE)
-    or(selector,JUMP,Branching,BNE_branch);
+    and and_gate1(Branching,ZERO,BRANCH);
+    and and_gate2(BNE_branch,~ZERO,BNE);
+    or  or_gate1(selector,JUMP,Branching,BNE_branch);
 
     assign #1 PC_plus_four=PC+4;
     assign OFFSET_EXTENDED= {{24{OFFSET[7]}}, OFFSET} << 2;
@@ -73,3 +45,31 @@ module MUX_unit(DATA1,DATA2,SELECTOR,RESULT);
 
     assign RESULT=(SELECTOR)?DATA2:DATA1;
 endmodule
+
+
+
+// module pc_tb;
+// reg CLK,RESET;
+// wire [31:0]pc;
+
+// pc_unit PCtest(RESET,CLK,pc);
+
+// initial begin 
+//     CLK=1'b1;
+//     forever #4 CLK=~CLK;
+// end
+
+// initial begin
+//     #15
+//     RESET=1;
+//     #4
+//     RESET=0;
+//     #50
+//     $finish;
+// end
+
+// initial begin
+//     $monitor("Time = %3d | reset =%d  | pc= %d\n ",$time,RESET,pc);
+// end
+
+// endmodule

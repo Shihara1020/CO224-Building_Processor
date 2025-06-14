@@ -1,59 +1,15 @@
-//GROUP-06
-//Lab05- part1
+`include "ALUSECTION/multiplier.v"
+`include "ALUSECTION/shift.v"
+// SELECTION CODE:
+//      FOEWARD - 000   (I0)
+//      ADD     - 001   (I1)
+//      AND     - 010   (I2)
+//      OR      - 011   (I3)
 
-// Creat the testbench module
-module testbench;
-    // Declare the Operand1 and Operand2 as signed 8-bit register
-    reg signed[7:0]OPERAND1,OPERAND2;
-
-    // Declare ALUOP as 3-bit register to control
-    reg[2:0]ALUOP;
-
-    // 8-bit signed wire for the output of the ALU
-    wire signed[7:0] ALURESULT;
-    
-    // Instantiate the ALU module
-    alu uut(OPERAND1,OPERAND2,ALURESULT,ALUOP);
-    
-
-    // Create the initial block for simulation
-    initial begin
-        // Display output whenever there is any change in operands or ALU operation
-        $monitor("TIME=%0t : OP1:%0d OP2:%0d ALUOP:%0b RESULT:%0d(%8b)", $time, OPERAND1, OPERAND2, ALUOP, ALURESULT,ALURESULT);
-        
-        //Create waveform dump files
-        $dumpfile("part1.vcd");
-        $dumpvars(0,testbench);
-
-        // Test Forward Operation (ALUOP = 000)
-        OPERAND1=8'd0;  
-        OPERAND2=8'd65;
-        ALUOP  =3'b000;
-        #10;   // 10 time units delay
-
-        // Test ADD Operation (ALUOP = 001)
-        OPERAND1=8'd45;
-        OPERAND2=8'd30;
-        ALUOP  =3'b001;
-        #10;   
-
-        // Test AND Operation (ALUOP = 010)
-        OPERAND1=8'b00100110;
-        OPERAND2=8'b00111010;
-        ALUOP  =3'b010;
-        #10;   
-
-        // Test OR Operation (ALUOP = 011)
-        ALUOP  =3'b011;   
-        #10;
-        
-        //Finish the simulation
-        $finish;  
-        
-    end
-    
-endmodule
-
+//      MULT    - 100   (I4)  - done
+//      SLL      - 101   (I5) - done  
+//      SRA     - 110   (I6)  - done
+//      ROR     - 111   (I7)  - done
 
 
 
@@ -118,21 +74,26 @@ module OR(DATA1,DATA2,RESULT);
 endmodule
 
 
+
+
 // 4x1 multiplexer module
 // Selects one of the 4 inputs based on SELECT signal
-module mux(I0,I1,I2,I3,SELECT,RESULT);
-    input signed [7:0]I0,I1,I2,I3;
+module mux(I0,I1,I2,I3,I4,I5,I6,I7,SELECT,RESULT);
+    input signed [7:0]I0,I1,I2,I3,I4,I5,I6,I7;
     input [2:0] SELECT;
     output reg signed[7:0] RESULT;
 
     // Update RESULT based on SELECT value
-    always@(I0,I1,I2,I3,SELECT) begin
+    always@(I0,I1,I2,I3,I4,I5,I6,I7,SELECT) begin
         case (SELECT) 
             3'b000:  RESULT=I0; // FORWARD output  
             3'b001:  RESULT=I1; // ADD ouput
             3'b010:  RESULT=I2; // AND ouput
-            3'b011:  RESULT=I3; // OR output 
-            default: RESULT=0;
+            3'b011:  RESULT=I3; // OR output
+            3'b100:  RESULT=I4; // multiplier output 
+            3'b101:  RESULT=I5; // Leftshift
+            3'b110:  RESULT=I6; // Arithmatic Right Shift
+            3'b111:  RESULT=I7; // Rotate right
         endcase
     end 
 
@@ -141,23 +102,31 @@ endmodule
 
 // ALU module
 // Connects operation modules and uses multiplexer to select final result
-module alu(DATA1,DATA2,RESULT,SELECT);
-    input signed[7:0]DATA1;
-    input signed[7:0]DATA2;
-    input [2:0]SELECT;
-    output signed[7:0]RESULT;
+module alu(DATA1,DATA2,RESULT,SELECT,ZERO);
+    input signed [7:0]DATA1;
+    input signed [7:0]DATA2;
+    input [2:0] SELECT;
+    output signed [7:0]RESULT;
+    output ZERO;
 
     // Internal wires for operation outputs
-    wire signed [7:0]I0,I1,I2,I3;
+    wire signed [7:0]I0,I1,I2,I3,I4,I5,I6,I7;
 
     // Instantiate each operation module
     FORWARD uut(DATA2,I0);
     ADD add_unit(DATA1,DATA2,I1);
     AND and_unit(DATA1,DATA2,I2);
     OR or_unit(DATA1,DATA2,I3);
-    // RESERVED res_unit();
+    multiply MUL(DATA1,DATA2,I4);
+    LEFTshift Lshift(DATA1,DATA2,I5);
+    //      SRA     - 110   (I6) - SETPIN-1
+    //      ROR     - 111   (I7)  -SETPIN-0
+    RIGHTshift Rshift(DATA1,DATA2,I6,1'b1);   //Right shift
+    RIGHTshift RORshirt(DATA1,DATA2,I7,1'b0);  //Rotate right
     
     // Instantiate multiplexer to select one of the operation outputs
-    mux mux_unit(I0,I1,I2,I3,SELECT,RESULT);
+    mux mux_unit(I0,I1,I2,I3,I4,I5,I6,I7,SELECT,RESULT);
+    //chech data1-dat2 is eqault to zero
+    assign ZERO=(RESULT==0)?1'b1:1'b0;
 
 endmodule

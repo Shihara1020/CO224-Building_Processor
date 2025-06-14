@@ -4,7 +4,7 @@
 `include "MUX_2.v"
 `include "instruction_memory.v"
 `include "controlUnit.v"
-`include "ALU.v"
+`include "ALUSECTION/ALU.v"
 
 module cpu(PC,INSTRUCTION,CLK,RESET);
 
@@ -55,17 +55,17 @@ module cpu(PC,INSTRUCTION,CLK,RESET);
     // 3. Control Unit - done
     control_unit control(OPCODE,WRITEENABLE,ALUSRC,ALUOP,NEMUX,BRANCH,JUMP,BNE);
 
-    // 4. Register File 
+    // 4. Register File -done
     reg_file  REGFILE(WRITEDATA,REGOUT1,REGOUT2,WRITEREG,READREG1,READREG2,WRITEENABLE,CLK,RESET);
 
-    // 5. Two's Complement
+    // 5. Two's Complement -done
     twos_commplement twos(REGOUT2,NEGATIVENUMBER);
 
 
-    // 6. First Mux: Select between REGOUT2 and NEGATIVENUMBER
+    // 6. First Mux: Select between REGOUT2 and NEGATIVENUMBER -done
     mux_unit MUX1(REGOUT2,NEGATIVENUMBER,NEMUX,mux1_out);
 
-    // 7. Second Mux: Select between mux1_out and IMMEDIATE
+    // 7. Second Mux: Select between mux1_out and IMMEDIATE-done
     mux_unit MUX2(IMMEDIATE,mux1_out,ALUSRC,mux2_out);
 
     // 8. ALU

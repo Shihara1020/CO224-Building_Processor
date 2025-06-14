@@ -23,9 +23,9 @@ output reg BNE;
     bne   = "00001000";  -done
     mult  = "00001001";  -done
     sll   = "00001010";  -done
-    srl   = "00001011";
-    sra   = "00001100";
-    ror   = "00001101";
+    srl   = "00001011"; 
+    sra   = "00001100";  -done
+    ror   = "00001101";  -done
 */
 
 always @(OPCODE) begin
@@ -107,7 +107,7 @@ always @(OPCODE) begin
         BNE=1'b0;
         
     end
-
+    //add new featutes
     else if (OPCODE==8'b00001000) begin //bne
         WRITEENABLE=1'b0;
         ALUOP=3'b001;
@@ -118,7 +118,7 @@ always @(OPCODE) begin
         BNE=1'b1;
     end
 
-    //add new featutes
+    
     else if (OPCODE==8'b00001001) begin //mult
         WRITEENABLE=1'b1;
         ALUOP=3'b100;
@@ -131,9 +131,9 @@ always @(OPCODE) begin
     end
 
     else if (OPCODE==8'b00001010) begin //sll
-        WRITEENABLE=1'b0;
+        WRITEENABLE=1'b1;
         ALUOP=3'b101;
-        ALUSRC=1'b1;
+        ALUSRC=1'b0;
         NEMUX=1'b0;
         BRANCH=1'b0;
         JUMP=1'b0;
@@ -141,7 +141,7 @@ always @(OPCODE) begin
         
     end
 
-    else if (OPCODE==8'b00001110) begin //srl
+    else if (OPCODE==8'b00001011) begin //srl
         WRITEENABLE=1'b1;
         ALUOP=3'b111;
         ALUSRC=1'b0;
@@ -150,9 +150,9 @@ always @(OPCODE) begin
         JUMP=1'b0;
         BNE=1'b0;
     end
-    else if (OPCODE==8'b00001111) begin //sra
+    else if (OPCODE==8'b00001100) begin //sra
         WRITEENABLE=1'b1;
-        ALUOP=3'b111;
+        ALUOP=3'b110;
         ALUSRC=1'b0;
         NEMUX=1'b0;
         BRANCH=1'b0;
@@ -160,7 +160,7 @@ always @(OPCODE) begin
         BNE=1'b0;
         
     end
-    else if (OPCODE==8'b00010000) begin //ror
+    else if (OPCODE==8'b00001101) begin //ror
         WRITEENABLE=1'b1;
         ALUOP=3'b111;
         ALUSRC=1'b0;

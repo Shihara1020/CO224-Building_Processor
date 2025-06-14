@@ -1,0 +1,27 @@
+[*]
+[*] GTKWave Analyzer v3.3.116 (w)1999-2023 BSI
+[*] Sat Jun 14 10:03:53 2025
+[*]
+[dumpfile] "/mnt/c/Users/eranj/Desktop/ACADAMIC FOLDER/Fourth Semester/CO224-COMPUTER ARCHITECTURE/Building_Prosessor/part5/cpu_wavedata.vcd"
+[dumpfile_mtime] "Sat Jun 14 09:46:41 2025"
+[dumpfile_size] 10909
+[savefile] "/mnt/c/Users/eranj/Desktop/ACADAMIC FOLDER/Fourth Semester/CO224-COMPUTER ARCHITECTURE/Building_Prosessor/part5/Waveform/waveform1.gtkw"
+[timestart] 0
+[size] 1000 600
+[pos] -1 -1
+*-4.200000 17 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
+[treeopen] cpu_tb.
+[treeopen] cpu_tb.mycpu.
+[sst_width] 276
+[signals_width] 142
+[sst_expanded] 1
+[sst_vpaned_height] 157
+@28
+cpu_tb.CLK
+cpu_tb.mycpu.REGFILE.register0[7:0]
+cpu_tb.mycpu.REGFILE.register1[7:0]
+cpu_tb.mycpu.REGFILE.register2[7:0]
+@29
+cpu_tb.mycpu.REGFILE.register3[7:0]
+[pattern_trace] 1
+[pattern_trace] 0

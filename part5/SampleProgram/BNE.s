@@ -1,0 +1,13 @@
+loadi 0 0x01
+loadi 1 0x02
+bne 0x02 0 1
+sra 3 1 0x02
+loadi 3 0x10
+loadi 4 0x04
+loadi 0 0x02
+bne 0x02 0 1
+add 2 0 1
+beq 0x01 2 4
+and 5 0 1
+and 7 0 1
+and 6 0 1
