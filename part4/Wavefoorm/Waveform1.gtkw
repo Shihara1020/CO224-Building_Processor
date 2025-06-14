@@ -1,0 +1,68 @@
+[*]
+[*] GTKWave Analyzer v3.3.116 (w)1999-2023 BSI
+[*] Sat Jun 14 21:10:04 2025
+[*]
+[dumpfile] "/mnt/c/Users/eranj/Desktop/ACADAMIC FOLDER/Fourth Semester/CO224-COMPUTER ARCHITECTURE/Building_Prosessor/part4/cpu_wavedata.vcd"
+[dumpfile_mtime] "Sat Jun 14 20:59:22 2025"
+[dumpfile_size] 15261
+[savefile] "/mnt/c/Users/eranj/Desktop/ACADAMIC FOLDER/Fourth Semester/CO224-COMPUTER ARCHITECTURE/Building_Prosessor/part4/Waveform1.gtkw"
+[timestart] 109
+[size] 1000 600
+[pos] -1 -1
+*-2.100000 9 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
+[treeopen] cpu_tb.
+[treeopen] cpu_tb.mycpu.
+[sst_width] 276
+[signals_width] 182
+[sst_expanded] 1
+[sst_vpaned_height] 253
+@28
+cpu_tb.CLK
+@200
+-PCUNIT
+@24
+cpu_tb.PC[31:0]
+cpu_tb.mycpu.PCUNIT.PC_plus_four[31:0]
+cpu_tb.mycpu.PCUNIT.selector
+cpu_tb.mycpu.PCUNIT.nextpc[31:0]
+cpu_tb.mycpu.PCUNIT.BRANCH_TARGET[31:0]
+@200
+-ALU_SECTION
+@28
+cpu_tb.mycpu.control.ALUOP[2:0]
+cpu_tb.mycpu.control.BRANCH
+cpu_tb.mycpu.control.JUMP
+cpu_tb.mycpu.control.WRITEENABLE
+cpu_tb.mycpu.control.ALUSRC
+@200
+-DECODER
+@22
+cpu_tb.mycpu.DECODER.INSTRUCTION[31:0]
+@24
+cpu_tb.mycpu.DECODER.READREG1[2:0]
+cpu_tb.mycpu.DECODER.READREG2[2:0]
+cpu_tb.mycpu.DECODER.WRITEREG[2:0]
+cpu_tb.mycpu.DECODER.IMMEDIATE[7:0]
+cpu_tb.mycpu.DECODER.OFFSET[7:0]
+@200
+-ALUSECTION
+@24
+cpu_tb.mycpu.ALU.DATA1[7:0]
+cpu_tb.mycpu.ALU.DATA2[7:0]
+cpu_tb.mycpu.ALU.RESULT[7:0]
+cpu_tb.mycpu.ALU.ZERO
+@200
+-REGISTER
+@25
+cpu_tb.mycpu.REGFILE.register0[7:0]
+cpu_tb.mycpu.REGFILE.register1[7:0]
+cpu_tb.mycpu.REGFILE.register2[7:0]
+cpu_tb.mycpu.REGFILE.register3[7:0]
+@24
+cpu_tb.mycpu.REGFILE.register4[7:0]
+cpu_tb.mycpu.REGFILE.register5[7:0]
+@25
+cpu_tb.mycpu.REGFILE.register6[7:0]
+cpu_tb.mycpu.REGFILE.register7[7:0]
+[pattern_trace] 1
+[pattern_trace] 0
