@@ -1,15 +1,6 @@
 //============================================================================
 //                                    CPU Top-Level Module
 // Complete CPU implementation with instruction fetch, decode, execute pipeline
-// Features:
-// - 32-bit Program Counter with branch support
-// - 32-bit instruction decoding
-// - 8-register file (R0-R7) with dual read ports
-// - Arithmetic Logic Unit (ALU) with multiple operations
-// - Control unit for instruction execution control
-// - Support for immediate and register operations
-// - Two's complement arithmetic support
-// - Conditional branching based on zero flag
 //============================================================================
 
 // Include all required module files
@@ -23,7 +14,6 @@
 
 module cpu(PC, INSTRUCTION, CLK, RESET);
 
-    //========== INPUT/OUTPUT PORT DECLARATIONS ==========
     input [31:0] INSTRUCTION;       // 32-bit instruction word from instruction memory
     input CLK;                      // System clock for synchronous operations
     input RESET;                    // System reset (active high) - initializes CPU state

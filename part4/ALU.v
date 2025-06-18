@@ -1,6 +1,5 @@
 // ======================================================================
 //                              ALU Module 
-// Description: Complete ALU with multiple arithmetic and logic operations
 // =======================================================================
 
 

@@ -42,12 +42,12 @@ int main( int argc, char *argv[] )
 	/* OP-CODE DEIFINITIONS
 	Change these according to op-codes assigned in your processor architecture 
 	*************************************************************************/
-	char *op_loadi 	= "00000101";
-	char *op_mov 	= "00000100";
 	char *op_add 	= "00000000";
 	char *op_sub 	= "00000001";
 	char *op_and 	= "00000010";
 	char *op_or 	= "00000011";
+	char *op_mov 	= "00000100";
+	char *op_loadi 	= "00000101";
 	char *op_j		= "00000110";
 	char *op_beq	= "00000111";
 	char *op_lwd 	= "00001000";
