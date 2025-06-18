@@ -4,12 +4,12 @@ module pc_unit(RESET,CLK,PC,BRANCH,ZERO,JUMP,OFFSET);
     input RESET;           // Reset signal
     input CLK;             // Clock signal
     input BRANCH,ZERO,JUMP; // Control signals
-    input signed [7:0]OFFSET; // Branch offset (8-bit signed)
+    input signed [7:0]OFFSET; // Branch offset
     
     output reg [31:0] PC;           // Current program counter
     output signed [31:0]nextpc;     // Next PC value
     
-    wire signed [31:0] PC_plus_four;    // PC + 4 (normal increment)
+    wire signed [31:0] PC_plus_four;    // PC + 4
     wire signed [31:0] BRANCH_TARGET;   // Branch target address
     
     wire Branching;                     // Branch condition met
@@ -25,7 +25,7 @@ module pc_unit(RESET,CLK,PC,BRANCH,ZERO,JUMP,OFFSET);
     // Calculate PC + 4 with 1 time unit delay
     assign #1 PC_plus_four=PC+4;
     
-    // Sign extend 8-bit offset to 32-bit and shift left by 2 (word alignment)
+    // Sign extend 8-bit offset to 32-bit and shift left by 2 - word alignment
     assign OFFSET_EXTENDED= {{24{OFFSET[7]}}, OFFSET} << 2;
     
     // Calculate branch target address with 2 time unit delay
@@ -48,9 +48,9 @@ endmodule
 // 2-to-1 Multiplexer Unit
 // Selects between two 32-bit inputs based on selector
 module MUX_unit(DATA1,DATA2,SELECTOR,RESULT);
-    input [31:0]DATA1,DATA2;  // Two 32-bit input data
-    output [31:0]RESULT;      // 32-bit output
-    input SELECTOR;           // Selection control
+    input [31:0]DATA1,DATA2;  
+    output [31:0]RESULT;      
+    input SELECTOR;          
     
     // Select DATA2 when SELECTOR is high, otherwise DATA1
     assign RESULT=(SELECTOR)?DATA2:DATA1;

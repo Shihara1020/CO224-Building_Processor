@@ -1,10 +1,10 @@
-loadi 4 0x05 
-loadi 5 0x01 
-loadi 6 0x01
-loadi 7 0x09
-sub 4 4 5
-beq 0x01 4 6 
+loadi 0 0x06 
+loadi 1 0x01 
+loadi 2 0x03
+loadi 3 0x08
+sub 0 0 1
+beq 0x01 0 2 
 j 0xFD
-add 1 4 7
+add 4 0 3
 
 

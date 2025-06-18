@@ -31,9 +31,6 @@ module control_unit(OPCODE,WRITEENABLE,ALUSRC,ALUOP,NEMUX,BRANCH,JUMP);
     // NEMUX:       1 = Negate second operand (for subtraction), 0 = No negation
     // ALUOP:       3-bit code to select ALU operation
 
-    //===================================================
-    //                MAIN CONTROL LOGIC
-    //===================================================
 
     always @(OPCODE) begin
         //Add 1 delay
