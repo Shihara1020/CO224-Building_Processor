@@ -58,6 +58,11 @@ int main( int argc, char *argv[] )
 	char *op_srl 	= "00001010";
 	char *op_sra	= "00001100";
 	char *op_ror	= "00001101";
+
+	char *op_lwd 	= "00001110";
+	char *op_lwi 	= "00001111";
+	char *op_swd 	= "00010000";
+	char *op_swi 	= "00010001";
 	/************************************************************************/
 	const char delim[] = " ";
 	FILE *fi, *fo;
@@ -183,6 +188,16 @@ int main( int argc, char *argv[] )
 				strcpy(out_token, op_ror);
 			else if (strcasecmp(in_token, "bne") == 0)
 				strcpy(out_token, op_bne);
+			else if (strcasecmp(in_token, "lwd") == 0)
+				strcpy(out_token, op_lwd);
+			else if (strcasecmp(in_token, "lwi") == 0)
+				strcpy(out_token, op_lwi);
+			else if (strcasecmp(in_token, "swd") == 0)
+				strcpy(out_token, op_swd);
+			else if (strcasecmp(in_token, "swi") == 0)
+				strcpy(out_token, op_swi);
+
+			
 
 			// Encoding register numbers
 			else if (strcmp(in_token, "0") == 0 || strcmp(in_token, "0\n") == 0)
@@ -245,8 +260,6 @@ int main( int argc, char *argv[] )
 					if (toupper(in_token[2 + i]) == 'F')
 						strcpy(out_token + (4 * i), "1111");
 				}
-
-
 				// If this is an srl instruction, set the MSB of the immediate value to 1
 				if (is_srl_instruction && count == 4) // count == 4 means we're processing the immediate value (4th token)
 				{
