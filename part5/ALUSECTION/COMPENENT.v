@@ -53,7 +53,7 @@ endmodule
 // Selects one of three inputs based on 2-bit select signal
 // Select values: 00->A0, 01->A1, 11->A2 
 module MULTIPLEXER_3to1(A0,A1,A2,Y,Select);
-    input A0, A1, A2;        
+    input A0,A1,A2;        
     input [1:0]Select;      
     output Y;                
     

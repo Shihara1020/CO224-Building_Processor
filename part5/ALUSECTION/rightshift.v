@@ -52,7 +52,7 @@ module RIGHTshiftMODULE(DATA1,DATA2,OUTPUT,SETPIN);
     MULTIPLEXER mulr7(DATA1[1],DATA1[2],s0[1],DATA2[0]);  // Bit 1:from DATA1[1] or DATA1[2]
     MULTIPLEXER mulr8(DATA1[0],DATA1[1],s0[0],DATA2[0]);  // Bit 0:from DATA1[0] or DATA1[1]
     
-    // Determine fill value F1 based on operation mode:
+    // Determine fill value F1 based on operation mode
     // ROR (00):Use DATA1[0] (bit rotated from LSB to MSB)
     // SRL (10):Use 1'b0 (logical shift fills with 0)
     // SRA (11):Use DATA1[7] (arithmetic shift fills with sign bit)
