@@ -3,10 +3,12 @@
 // Author: Isuru Nawinne
 
 `include "CPU.v"
+`include "DataMemory.v"         
 
 module cpu_tb;
 
-    reg CLK, RESET;
+    reg CLK, RESET; // Reset cpu
+    reg RESET_MEM; //  Reset memory 
     wire [31:0] PC;
     reg [31:0] INSTRUCTION;
     
@@ -43,12 +45,13 @@ module cpu_tb;
         $readmemb("instr_mem.mem", instr_mem);
     end
     
-    /* 
-    -----
-     CPU
-    -----
-    */
-    cpu mycpu(PC, INSTRUCTION, CLK, RESET);
+    
+    wire [7:0]ADDRESS,WRITEDATA,READDATA;
+    wire READ,WRITE,BUSYWAIT;
+    // Instanciate CPU
+    cpu mycpu(PC, INSTRUCTION, CLK, RESET,READ,WRITE,BUSYWAIT,ADDRESS,WRITEDATA,READDATA); 
+    // Instanciate Data Memory
+    data_memory data_memory_unit(CLK,RESET_MEM,READ,WRITE,ADDRESS,WRITEDATA,READDATA,BUSYWAIT);
 
     initial
     begin
@@ -59,12 +62,15 @@ module cpu_tb;
         
         CLK = 1'b0;
         RESET = 1'b0;
+        RESET_MEM=1'b0;
         
         // TODO: Reset the CPU (by giving a pulse to RESET signal) to start the program execution
         #2
         RESET=1'b1;
+        RESET_MEM=1'b1;
         #4
         RESET=1'b0;
+        RESET_MEM=1'b0;
         // finish simulation after some time
         #500
         $finish;
