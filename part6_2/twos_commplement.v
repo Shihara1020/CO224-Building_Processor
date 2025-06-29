@@ -3,7 +3,7 @@
 // Converts input number to its two's complement 
 // Algorithm:   Two's complement = (~input) + 1 (invert bits and add 1)
 //============================================================================
-
+`timescale  1ns/100ps
 module twos_commplement(DATA_IN,DATA_OUT);
     input [7:0]DATA_IN;
     output reg signed[7:0] DATA_OUT;

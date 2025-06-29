@@ -1,3 +1,4 @@
+`timescale  1ns/100ps
 //=================== Right Shift Operation Modes ===================
 //      ROR (Rotate Right) - 111   (I7)  - SETPIN = 00
 //      SRL (Shift Right Logical) - 101   - SETPIN = 10  

@@ -1,5 +1,6 @@
 // Include the right shift module 
 `include "ALUSECTION/rightshift.v"
+`timescale  1ns/100ps
 
 // Top-level Logical Shift Module
 // Performs both left and right logical shifts based on DATA2[7] (MSB of shift amount)

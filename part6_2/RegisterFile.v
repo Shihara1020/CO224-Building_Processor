@@ -3,6 +3,8 @@
 // 8-register file with dual read ports and single write port
 // 8 registers (R0-R7), each storing 8-bit signed values
 //============================================================================ 
+`timescale  1ns/100ps
+
 module reg_file(IN,OUT1,OUT2,INADDRESS,OUT1ADDRESS,OUT2ADDRESS,WRITE,CLK,RESET);
     //========== INPUT PORT DECLARATIONS ==========
     input [2:0] OUT1ADDRESS;    // 3-bit address for first read port (selects R0-R7)

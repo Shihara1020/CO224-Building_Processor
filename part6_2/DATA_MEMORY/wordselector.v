@@ -1,3 +1,4 @@
+`timescale  1ns/100ps
 module WORDSELECTOR(word1,word2,word3,word4,select,resultdata);
     input [7:0]word1,word2,word3,word4;
     input [1:0]select;

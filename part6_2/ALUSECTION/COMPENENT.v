@@ -1,3 +1,4 @@
+`timescale  1ns/100ps
 // 1-bit Multiplexer 
 // Logic: B = (select' AND A0) OR (select AND A1)
 // When select = 0, output A0; when select = 1, output A1

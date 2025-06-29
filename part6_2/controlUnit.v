@@ -2,20 +2,22 @@
 //                                   Control Unit Module
 // Generates all control signals for CPU datapath based on instruction opcode
 //============================================================================
+`timescale  1ns/100ps
 
-module control_unit(OPCODE,WRITEENABLE,ALUSRC,ALUOP,NEMUX,BRANCH,READ,WRITE,BUSYWAIT,WRITESRC);
+module control_unit(OPCODE,WRITEENABLE,ALUSRC,ALUOP,NEMUX,BRANCH,READ,WRITE,BUSYWAIT,WRITESRC,HOLD);
     input [7:0]OPCODE;
-    input BUSYWAIT;             
+    input BUSYWAIT;                //signal the control unit if there's reading or writing happening to the memory unit                         
 
     //========== OUTPUT PORT DECLARATIONS ==========
     output reg [2:0]ALUOP;         // 3-bit ALU operation selector
-    output reg ALUSRC;              // ALU source selector (0: immediate, 1: register)
-    output reg WRITEENABLE;         // Register file write enable (1: write, 0: no write)
-    output reg NEMUX;               // Negative number MUX selector (0: positive, 1: two's complement)
+    output reg ALUSRC;             // ALU source selector (0: immediate, 1: register)
+    output reg WRITEENABLE;        // Register file write enable (1: write, 0: no write)
+    output reg NEMUX;              // Negative number MUX selector (0: positive, 1: two's complement)
     output reg [1:0]BRANCH;        // 2-bit branch control signals
-    output reg WRITE;
-    output reg WRITESRC;
-    output reg READ;
+    output reg WRITE;              // Memory write enable 
+    output reg WRITESRC;           // Selector between ALU result and Memory read(0: ALU result ,1:Memory read data  ) 
+    output reg READ;               // Memory read enable
+    output reg HOLD;               // Control signal for pc to determine whether to stall or not  
 
     //========== INSTRUCTION SET ARCHITECTURE ==========
     /*
@@ -59,8 +61,9 @@ module control_unit(OPCODE,WRITEENABLE,ALUSRC,ALUOP,NEMUX,BRANCH,READ,WRITE,BUSY
      */
 
     
-    // Memory control logic - disable memory operations when not busy
+    // Enable hold if memory operation is going on
     always @(BUSYWAIT) begin
+        HOLD=BUSYWAIT;                
         if(BUSYWAIT==1'b0) begin
             READ=1'b0;
             WRITE=1'b0;
@@ -77,10 +80,10 @@ module control_unit(OPCODE,WRITEENABLE,ALUSRC,ALUOP,NEMUX,BRANCH,READ,WRITE,BUSY
             ALUOP=3'b001;         // ALU performs addition
             ALUSRC=1'b1;          // Use register as second operand
             NEMUX=1'b0;           // Use positive value (no two's complement)
-            BRANCH = 2'b00;         // Sequential execution (no branch)
+            BRANCH = 2'b00;       // Sequential execution (no branch)
 
-            //new control signal
-            READ=1'b0;
+            // control signals to control memory operations 
+            READ=1'b0;             
             WRITE=1'b0;
             WRITESRC=1'b0;
         end
@@ -92,7 +95,7 @@ module control_unit(OPCODE,WRITEENABLE,ALUSRC,ALUOP,NEMUX,BRANCH,READ,WRITE,BUSY
             NEMUX=1'b1;           // Use two's complement for subtraction (A - B = A + (-B))
             BRANCH=2'b00;         // Sequential execution (no branch)
 
-            //new control signal
+            // control signals to control memory operations 
             READ=1'b0;
             WRITE=1'b0;
             WRITESRC=1'b0;
@@ -105,7 +108,7 @@ module control_unit(OPCODE,WRITEENABLE,ALUSRC,ALUOP,NEMUX,BRANCH,READ,WRITE,BUSY
             NEMUX=1'b0;           // Use positive value
             BRANCH=2'b00;         // Sequential execution (no branch)
 
-            //new control signal
+            // control signals to control memory operations 
             READ=1'b0;
             WRITE=1'b0;
             WRITESRC=1'b0;
@@ -120,7 +123,7 @@ module control_unit(OPCODE,WRITEENABLE,ALUSRC,ALUOP,NEMUX,BRANCH,READ,WRITE,BUSY
             BRANCH=2'b00;         // Sequential execution (no branch)
 
 
-            //new control signal
+            // control signals to control memory operations 
             READ=1'b0;
             WRITE=1'b0;
             WRITESRC=1'b0;
@@ -133,7 +136,8 @@ module control_unit(OPCODE,WRITEENABLE,ALUSRC,ALUOP,NEMUX,BRANCH,READ,WRITE,BUSY
             NEMUX=1'b0;           // Use positive value
             BRANCH=2'b00;         // Sequential execution (no branch)
 
-            //new control signal
+            //control signals to control memory operations
+
             READ=1'b0;
             WRITE=1'b0;
             WRITESRC=1'b0;
@@ -146,7 +150,8 @@ module control_unit(OPCODE,WRITEENABLE,ALUSRC,ALUOP,NEMUX,BRANCH,READ,WRITE,BUSY
             NEMUX=1'b0;           // Use positive value
             BRANCH=2'b00;         // Sequential execution (no branch)
 
-            //new control signal
+            //control signals to control memory operations
+
             READ=1'b0;
             WRITE=1'b0;
             WRITESRC=1'b0;
@@ -160,7 +165,7 @@ module control_unit(OPCODE,WRITEENABLE,ALUSRC,ALUOP,NEMUX,BRANCH,READ,WRITE,BUSY
             BRANCH=2'b00;         // Sequential execution (no branch)
 
 
-            //new control signal
+            //control signals to control memory operations
             READ=1'b0;
             WRITE=1'b0;
             WRITESRC=1'b0;
@@ -175,7 +180,8 @@ module control_unit(OPCODE,WRITEENABLE,ALUSRC,ALUOP,NEMUX,BRANCH,READ,WRITE,BUSY
             BRANCH=2'b01;         // Unconditional jump
 
 
-            //new control signal
+            //control signals to control memory operations
+
             READ=1'b0;
             WRITE=1'b0;
             WRITESRC=1'b0;
@@ -189,7 +195,8 @@ module control_unit(OPCODE,WRITEENABLE,ALUSRC,ALUOP,NEMUX,BRANCH,READ,WRITE,BUSY
             BRANCH=2'b10;         // Branch if zero flag is set
 
 
-            //new control signal
+            //control signals to control memory operations
+
             READ=1'b0;
             WRITE=1'b0;
             WRITESRC=1'b0;
@@ -203,7 +210,8 @@ module control_unit(OPCODE,WRITEENABLE,ALUSRC,ALUOP,NEMUX,BRANCH,READ,WRITE,BUSY
             BRANCH=2'b11;         // Branch if zero flag is clear
 
 
-            //new control signal
+            //control signals to control memory operations
+
             READ=1'b0;
             WRITE=1'b0;
             WRITESRC=1'b0;
@@ -218,7 +226,8 @@ module control_unit(OPCODE,WRITEENABLE,ALUSRC,ALUOP,NEMUX,BRANCH,READ,WRITE,BUSY
             BRANCH=2'b00;         // Sequential execution (no branch)
 
 
-            //new control signal
+            //control signals to control memory operations
+
             READ=1'b0;
             WRITE=1'b0;
             WRITESRC=1'b0;
@@ -231,7 +240,8 @@ module control_unit(OPCODE,WRITEENABLE,ALUSRC,ALUOP,NEMUX,BRANCH,READ,WRITE,BUSY
             NEMUX=1'b0;           // Use positive value
             BRANCH=2'b00;         // Sequential execution (no branch)
 
-            //new control signal
+            //control signals to control memory operations
+
             READ=1'b0;
             WRITE=1'b0;
             WRITESRC=1'b0;
@@ -245,7 +255,8 @@ module control_unit(OPCODE,WRITEENABLE,ALUSRC,ALUOP,NEMUX,BRANCH,READ,WRITE,BUSY
             BRANCH=2'b00;         // Sequential execution (no branch)
 
 
-            //new control signal
+            //control signals to control memory operations
+
             READ=1'b0;
             WRITE=1'b0;
             WRITESRC=1'b0;
@@ -258,7 +269,8 @@ module control_unit(OPCODE,WRITEENABLE,ALUSRC,ALUOP,NEMUX,BRANCH,READ,WRITE,BUSY
             BRANCH=2'b00;         // Sequential execution (no branch)
 
 
-            //new control signal
+            //control signals to control memory operations
+
             READ=1'b1;            // Enable memory read
             WRITE=1'b0;      
             WRITESRC=1'b1;        // Write memory data to register
@@ -271,7 +283,8 @@ module control_unit(OPCODE,WRITEENABLE,ALUSRC,ALUOP,NEMUX,BRANCH,READ,WRITE,BUSY
             BRANCH=2'b00;         // Sequential execution (no branch)
 
 
-            //new control signal
+            //control signals to control memory operations
+
             READ=1'b1;            // Enable memory read
             WRITE=1'b0;
             WRITESRC=1'b1;        // Write memory data to register
@@ -284,10 +297,11 @@ module control_unit(OPCODE,WRITEENABLE,ALUSRC,ALUOP,NEMUX,BRANCH,READ,WRITE,BUSY
             BRANCH=2'b00;         // Sequential execution (no branch)
 
 
-            //new control signal
+            //control signals to control memory operations
+
             READ=1'b0;
             WRITE=1'b1;            // Enable memory write
-            WRITESRC=1'b0;         //not use
+            WRITESRC=1'b0;         //not used
         end
         else if (OPCODE==8'b00010001) begin   //swi instruction
             WRITEENABLE=1'b0;     // Enable write to destination register
@@ -297,10 +311,11 @@ module control_unit(OPCODE,WRITEENABLE,ALUSRC,ALUOP,NEMUX,BRANCH,READ,WRITE,BUSY
             BRANCH=2'b00;         // Sequential execution (no branch)
 
 
-            //new control signal for instruction memory
+            //control signals to control memory operations
+            
             READ=1'b0;
             WRITE=1'b1;           // Enable memory write      
-            WRITESRC=1'b0;        // not 
+            WRITESRC=1'b0;        // not used
         end
 
     end
