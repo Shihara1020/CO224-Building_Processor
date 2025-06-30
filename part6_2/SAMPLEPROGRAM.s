@@ -1,12 +1,17 @@
-loadi 0 0x09    
-loadi 1 0x01    
+loadi 0 0x09
+loadi 1 0x01
 swd 0 1
-lwd 2 1
-//swi 1 0x00    
-//lwd 2 1       
-//lwd 3 1       
-//sub 4 0 1     
-//swi 4 0x02    
-//lwi 5 0x02     
-//swi 4 0x20     
-//wi 6 0x20
+loadi 2 0x0A 
+loadi 3 0x05
+swd 2 3
+loadi 4 0x0B
+swd 4 1
+swd 0 3
+loadi 5 0x10
+lwi 6 0x10
+swi 1 0x11
+lwi 7 0x10
+lwi 8 0x10
+sub 9 0 1
+swi 9 0x12
+lwi 10 0x12

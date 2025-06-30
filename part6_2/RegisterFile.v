@@ -5,7 +5,7 @@
 //============================================================================ 
 `timescale  1ns/100ps
 
-module reg_file(IN,OUT1,OUT2,INADDRESS,OUT1ADDRESS,OUT2ADDRESS,WRITE,CLK,RESET);
+module reg_file(IN,OUT1,OUT2,INADDRESS,OUT1ADDRESS,OUT2ADDRESS,WRITE,CLK,RESET,HOLD);
     //========== INPUT PORT DECLARATIONS ==========
     input [2:0] OUT1ADDRESS;    // 3-bit address for first read port (selects R0-R7)
     input [2:0] OUT2ADDRESS;    // 3-bit address for second read port (selects R0-R7)  
@@ -14,6 +14,7 @@ module reg_file(IN,OUT1,OUT2,INADDRESS,OUT1ADDRESS,OUT2ADDRESS,WRITE,CLK,RESET);
     input CLK;                  // Clock signal for synchronous operations
     input RESET;                // Reset signal (active high) - clears all registers
     input WRITE;                // Write enable signal (active high)
+    input HOLD;
     
     //========== OUTPUT PORT DECLARATIONS ==========
     output signed[7:0] OUT2;  // 8-bit signed data from second read port
@@ -34,10 +35,13 @@ module reg_file(IN,OUT1,OUT2,INADDRESS,OUT1ADDRESS,OUT2ADDRESS,WRITE,CLK,RESET);
                 registers[i] = 8'd0;
             end
         end
+    end
 
-        // If WRITE is active, store data into selected register    
-        if (WRITE) begin
-            #1
+    always @(posedge CLK) begin
+        // If WRITE is active, store data into selected register
+        #0.001    
+        if (WRITE && !RESET && !HOLD) begin
+            #0.999
             registers[INADDRESS] = IN;
         end
 

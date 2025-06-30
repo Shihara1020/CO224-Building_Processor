@@ -60,11 +60,13 @@ module pc_unit(RESET,CLK,PC,BRANCH,ZERO,OFFSET,HOLD);
     //========== SYNCHRONOUS PC UPDATE LOGIC ==========
     // PC is updated on positive clock edge
     always @(posedge CLK) begin
+
+        #0.001
         if(RESET == 1'b1) begin 
-            PC <= #1 0;        // Reset PC to address 0 with 1 time unit delay
+            #0.999 PC = 0;        // Reset PC to address 0 with 1 time unit delay
         end
         else if(~HOLD) begin
-            #1 PC = nextpc;     // Update PC with next calculated value
+            #0.999 PC = nextpc;     // Update PC with next calculated value
         end
     end
 

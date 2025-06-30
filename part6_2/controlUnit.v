@@ -63,11 +63,7 @@ module control_unit(OPCODE,WRITEENABLE,ALUSRC,ALUOP,NEMUX,BRANCH,READ,WRITE,BUSY
     
     // Enable hold if memory operation is going on
     always @(BUSYWAIT) begin
-        HOLD=BUSYWAIT;                
-        if(BUSYWAIT==1'b0) begin
-            READ=1'b0;
-            WRITE=1'b0;
-        end       
+        HOLD=BUSYWAIT;                     
     end
 
     //========== COMBINATIONAL CONTROL LOGIC ==========

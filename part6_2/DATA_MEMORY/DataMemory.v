@@ -46,7 +46,7 @@ module data_memory(
         if(readaccess)
         begin
             readdata[7:0] = #40 memory_array[{address,2'b00}];
-            readdata[15:0] = #40 memory_array[{address,2'b01}];
+            readdata[15:8] = #40 memory_array[{address,2'b01}];
             readdata[23:16] = #40 memory_array[{address,2'b10}];
             readdata[31:24] = #40 memory_array[{address,2'b11}];
             busywait = 0;

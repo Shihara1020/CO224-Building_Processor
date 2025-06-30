@@ -78,7 +78,7 @@ module cpu(PC, INSTRUCTION, CLK, RESET,READ,WRITE,BUSYWAIT,ADDRESS,WRITEDATA,REA
     // 4. Register File
     // 8-register storage with dual read ports and single write port
     // Provides source operands and stores computation results
-    reg_file REGFILE(REGWRITEDATA, REGOUT1, REGOUT2, WRITEREG, READREG1, READREG2, WRITEENABLE, CLK, RESET);
+    reg_file REGFILE(REGWRITEDATA, REGOUT1, REGOUT2, WRITEREG, READREG1, READREG2, WRITEENABLE, CLK, RESET,HOLD);
 
     // 5. Two's Complement Unit
     // Converts REGOUT2 to its two's complement (negative value)
