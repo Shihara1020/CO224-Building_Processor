@@ -19,7 +19,7 @@ module cpu_tb;
     wire READ,WRITE,BUSYWAIT;
 
     //cache and memory
-    wire [5:0]ADDRESS,
+    wire [5:0]MEM_ADDRESS;
     wire [31:0]MEM_WRITEDATA,MEM_READDATA;
     wire MEM_READ,MEM_WRITE,MEM_BUSYWAIT;
 
@@ -52,7 +52,7 @@ module cpu_tb;
     // Instanciate CPU
     cpu mycpu(PC, INSTRUCTION, CLK, RESET,READ,WRITE,BUSYWAIT,ADDRESS,WRITEDATA,READDATA); 
     // CALL THE CACHE
-    CACHE cache_unit(CLK,BUSYWAIT,READ,WRITE,WRITEDATA,READDATA,ADDRESS,RESET_MEM,MEM_BUSYWAIT,MEM_READ,MEM_WRITE,MEM_WRITEDATA,MEM_READDATA,MEM_ADDRESS)
+    CACHE cache_unit(CLK,BUSYWAIT,READ,WRITE,WRITEDATA,READDATA,ADDRESS,RESET_MEM,MEM_BUSYWAIT,MEM_READ,MEM_WRITE,MEM_WRITEDATA,MEM_READDATA,MEM_ADDRESS);
     // Instanciate Data Memory
     data_memory data_memory_unit(CLK,RESET_MEM,MEM_READ,MEM_WRITE,MEM_ADDRESS,MEM_WRITEDATA,MEM_READDATA,MEM_BUSYWAIT);
 
@@ -61,7 +61,11 @@ module cpu_tb;
     
         // generate files needed to plot the waveform using GTKWave
         $dumpfile("cpu_wavedata.vcd");
-		$dumpvars(3,cpu_tb,cpu_tb.mycpu.REGFILE.register0,cpu_tb.mycpu.REGFILE.register1,cpu_tb.mycpu.REGFILE.register2,cpu_tb.mycpu.REGFILE.register3,cpu_tb.mycpu.REGFILE.register4,cpu_tb.mycpu.REGFILE.register5,cpu_tb.mycpu.REGFILE.register6,cpu_tb.mycpu.REGFILE.register7);
+        for (integer i = 0; i < 8; i = i + 1) 
+        begin
+                $dumpvars(3,cpu_tb,cpu_tb.mycpu.REGFILE.registers[i]);
+            end
+		
         
         CLK = 1'b0;
         RESET = 1'b0;

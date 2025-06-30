@@ -1,5 +1,5 @@
 $date
-	Wed Jun 18 15:22:25 2025
+	Mon Jun 30 10:54:51 2025
 $end
 $version
 	Icarus Verilog
@@ -87,24 +87,16 @@ $scope module REGFILE $end
 $var wire 1 " CLK $end
 $var wire 8 W IN [7:0] $end
 $var wire 3 X INADDRESS [2:0] $end
-$var wire 3 Y OUT1ADDRESS [2:0] $end
-$var wire 3 Z OUT2ADDRESS [2:0] $end
+$var wire 8 Y OUT1 [7:0] $end
+$var wire 3 Z OUT1ADDRESS [2:0] $end
+$var wire 8 [ OUT2 [7:0] $end
+$var wire 3 \ OUT2ADDRESS [2:0] $end
 $var wire 1 $ RESET $end
 $var wire 1 * WRITE $end
-$var reg 8 [ OUT1 [7:0] $end
-$var reg 8 \ OUT2 [7:0] $end
-$var reg 8 ] register0 [7:0] $end
-$var reg 8 ^ register1 [7:0] $end
-$var reg 8 _ register2 [7:0] $end
-$var reg 8 ` register3 [7:0] $end
-$var reg 8 a register4 [7:0] $end
-$var reg 8 b register5 [7:0] $end
-$var reg 8 c register6 [7:0] $end
-$var reg 8 d register7 [7:0] $end
 $upscope $end
 $scope module control $end
-$var wire 8 e OPCODE [7:0] $end
-$var reg 3 f ALUOP [2:0] $end
+$var wire 8 ] OPCODE [7:0] $end
+$var reg 3 ^ ALUOP [2:0] $end
 $var reg 1 8 ALUSRC $end
 $var reg 1 7 BRANCH $end
 $var reg 1 5 JUMP $end
@@ -112,8 +104,221 @@ $var reg 1 3 NEMUX $end
 $var reg 1 * WRITEENABLE $end
 $upscope $end
 $scope module twos $end
-$var wire 8 g DATA_IN [7:0] $end
-$var reg 8 h DATA_OUT [7:0] $end
+$var wire 8 _ DATA_IN [7:0] $end
+$var reg 8 ` DATA_OUT [7:0] $end
+$upscope $end
+$upscope $end
+$scope begin $ivl_for_loop1 $end
+$var integer 32 a i [31:0] $end
+$upscope $end
+$upscope $end
+$scope module cpu_tb $end
+$scope module mycpu $end
+$scope module REGFILE $end
+$var reg 8 b \registers[0] [7:0] $end
+$upscope $end
+$upscope $end
+$upscope $end
+$scope module cpu_tb $end
+$scope module mycpu $end
+$scope module ALU $end
+$upscope $end
+$scope module DECODER $end
+$upscope $end
+$scope module MUX1 $end
+$upscope $end
+$scope module MUX2 $end
+$upscope $end
+$scope module PCUNIT $end
+$upscope $end
+$scope module REGFILE $end
+$upscope $end
+$scope module control $end
+$upscope $end
+$scope module twos $end
+$upscope $end
+$upscope $end
+$scope begin $ivl_for_loop1 $end
+$upscope $end
+$upscope $end
+$scope module cpu_tb $end
+$scope module mycpu $end
+$scope module REGFILE $end
+$var reg 8 c \registers[1] [7:0] $end
+$upscope $end
+$upscope $end
+$upscope $end
+$scope module cpu_tb $end
+$scope module mycpu $end
+$scope module ALU $end
+$upscope $end
+$scope module DECODER $end
+$upscope $end
+$scope module MUX1 $end
+$upscope $end
+$scope module MUX2 $end
+$upscope $end
+$scope module PCUNIT $end
+$upscope $end
+$scope module REGFILE $end
+$upscope $end
+$scope module control $end
+$upscope $end
+$scope module twos $end
+$upscope $end
+$upscope $end
+$scope begin $ivl_for_loop1 $end
+$upscope $end
+$upscope $end
+$scope module cpu_tb $end
+$scope module mycpu $end
+$scope module REGFILE $end
+$var reg 8 d \registers[2] [7:0] $end
+$upscope $end
+$upscope $end
+$upscope $end
+$scope module cpu_tb $end
+$scope module mycpu $end
+$scope module ALU $end
+$upscope $end
+$scope module DECODER $end
+$upscope $end
+$scope module MUX1 $end
+$upscope $end
+$scope module MUX2 $end
+$upscope $end
+$scope module PCUNIT $end
+$upscope $end
+$scope module REGFILE $end
+$upscope $end
+$scope module control $end
+$upscope $end
+$scope module twos $end
+$upscope $end
+$upscope $end
+$scope begin $ivl_for_loop1 $end
+$upscope $end
+$upscope $end
+$scope module cpu_tb $end
+$scope module mycpu $end
+$scope module REGFILE $end
+$var reg 8 e \registers[3] [7:0] $end
+$upscope $end
+$upscope $end
+$upscope $end
+$scope module cpu_tb $end
+$scope module mycpu $end
+$scope module ALU $end
+$upscope $end
+$scope module DECODER $end
+$upscope $end
+$scope module MUX1 $end
+$upscope $end
+$scope module MUX2 $end
+$upscope $end
+$scope module PCUNIT $end
+$upscope $end
+$scope module REGFILE $end
+$upscope $end
+$scope module control $end
+$upscope $end
+$scope module twos $end
+$upscope $end
+$upscope $end
+$scope begin $ivl_for_loop1 $end
+$upscope $end
+$upscope $end
+$scope module cpu_tb $end
+$scope module mycpu $end
+$scope module REGFILE $end
+$var reg 8 f \registers[4] [7:0] $end
+$upscope $end
+$upscope $end
+$upscope $end
+$scope module cpu_tb $end
+$scope module mycpu $end
+$scope module ALU $end
+$upscope $end
+$scope module DECODER $end
+$upscope $end
+$scope module MUX1 $end
+$upscope $end
+$scope module MUX2 $end
+$upscope $end
+$scope module PCUNIT $end
+$upscope $end
+$scope module REGFILE $end
+$upscope $end
+$scope module control $end
+$upscope $end
+$scope module twos $end
+$upscope $end
+$upscope $end
+$scope begin $ivl_for_loop1 $end
+$upscope $end
+$upscope $end
+$scope module cpu_tb $end
+$scope module mycpu $end
+$scope module REGFILE $end
+$var reg 8 g \registers[5] [7:0] $end
+$upscope $end
+$upscope $end
+$upscope $end
+$scope module cpu_tb $end
+$scope module mycpu $end
+$scope module ALU $end
+$upscope $end
+$scope module DECODER $end
+$upscope $end
+$scope module MUX1 $end
+$upscope $end
+$scope module MUX2 $end
+$upscope $end
+$scope module PCUNIT $end
+$upscope $end
+$scope module REGFILE $end
+$upscope $end
+$scope module control $end
+$upscope $end
+$scope module twos $end
+$upscope $end
+$upscope $end
+$scope begin $ivl_for_loop1 $end
+$upscope $end
+$upscope $end
+$scope module cpu_tb $end
+$scope module mycpu $end
+$scope module REGFILE $end
+$var reg 8 h \registers[6] [7:0] $end
+$upscope $end
+$upscope $end
+$upscope $end
+$scope module cpu_tb $end
+$scope module mycpu $end
+$scope module ALU $end
+$upscope $end
+$scope module DECODER $end
+$upscope $end
+$scope module MUX1 $end
+$upscope $end
+$scope module MUX2 $end
+$upscope $end
+$scope module PCUNIT $end
+$upscope $end
+$scope module REGFILE $end
+$upscope $end
+$scope module control $end
+$upscope $end
+$scope module twos $end
+$upscope $end
+$upscope $end
+$scope begin $ivl_for_loop1 $end
+$upscope $end
+$upscope $end
+$scope module cpu_tb $end
+$scope module mycpu $end
+$scope module REGFILE $end
+$var reg 8 i \registers[7] [7:0] $end
 $upscope $end
 $upscope $end
 $upscope $end
@@ -123,6 +328,7 @@ $dumpall
 $end
 #0
 $dumpvars
+bx i
 bx h
 bx g
 bx f
@@ -130,7 +336,7 @@ bx e
 bx d
 bx c
 bx b
-bx a
+b1000 a
 bx `
 bx _
 bx ^
@@ -204,14 +410,14 @@ $end
 b0 !
 b0 0
 b0 V
+b0 i
+b0 h
+b0 g
+b0 f
+b0 e
 b0 d
 b0 c
 b0 b
-b0 a
-b0 `
-b0 _
-b0 ^
-b0 ]
 #6
 b100 S
 0$
@@ -228,13 +434,13 @@ b0 H
 b0 X
 b110 .
 b110 G
-b110 Z
+b110 \
 b0 /
 b0 F
-b0 Y
+b0 Z
 b101 1
 b101 E
-b101 e
+b101 ]
 b101000000000000000000000110 #
 b101000000000000000000000110 %
 b101000000000000000000000110 B
@@ -251,7 +457,7 @@ b110 N
 08
 b0 9
 b0 :
-b0 f
+b0 ^
 1*
 0"
 #9
@@ -268,15 +474,15 @@ b110 ?
 b100 U
 b0 ,
 b0 K
-b0 \
-b0 g
+b0 [
+b0 _
 b0 -
 b0 A
-b0 [
+b0 Y
 #10
 b0 4
 b0 J
-b0 h
+b0 `
 b110 >
 #12
 1"
@@ -284,13 +490,10 @@ b110 >
 b100 !
 b100 0
 b100 V
-b110 ]
+b110 b
 #14
 b1000 R
 b1000 S
-b110 -
-b110 A
-b110 [
 #15
 b100 T
 b1 &
@@ -307,40 +510,34 @@ b1 H
 b1 X
 b1 .
 b1 G
-b1 Z
-b110 =
+b1 \
 b101000000010000000000000001 #
 b101000000010000000000000001 %
 b101000000010000000000000001 B
 b1000 U
+b110 -
+b110 A
+b110 Y
 #16
 b1 +
 b1 ;
 b1 W
-b111 <
-b0 =
 b1 ?
-b111 >
+b111 <
 0"
 #17
 b1100 U
+b111 >
 #20
 1"
 #21
-b1 ^
+b1 c
 b1000 !
 b1000 0
 b1000 V
 #22
 b1100 R
-b1 '
-b1 I
-b1 M
 b1100 S
-b1 ,
-b1 K
-b1 \
-b1 g
 #23
 b1000 T
 b11 &
@@ -357,13 +554,17 @@ b10 H
 b10 X
 b11 .
 b11 G
-b11 Z
-b11111111 4
-b11111111 J
-b11111111 h
+b11 \
+b1 '
+b1 I
+b1 M
 b101000000100000000000000011 #
 b101000000100000000000000011 %
 b101000000100000000000000011 B
+b1 ,
+b1 K
+b1 [
+b1 _
 b10000 U
 #24
 b11 +
@@ -371,6 +572,9 @@ b11 ;
 b11 W
 b10 =
 b11 ?
+b11111111 4
+b11111111 J
+b11111111 `
 0"
 #25
 b0 '
@@ -380,19 +584,19 @@ b1001 >
 b10100 U
 b0 ,
 b0 K
-b0 \
-b0 g
+b0 [
+b0 _
 #26
 b0 4
 b0 J
-b0 h
+b0 `
 #28
 1"
 #29
 b1100 !
 b1100 0
 b1100 V
-b11 _
+b11 d
 #30
 b10000 R
 b10000 S
@@ -412,7 +616,7 @@ b11 H
 b11 X
 b0 .
 b0 G
-b0 Z
+b0 \
 b101000000110000000000001000 #
 b101000000110000000000001000 %
 b101000000110000000000001000 B
@@ -421,8 +625,8 @@ b11000 U
 b1000 +
 b1000 ;
 b1000 W
-b1110 <
 b0 =
+b1110 <
 b1000 ?
 0"
 #33
@@ -433,16 +637,16 @@ b1110 >
 b11100 U
 b110 ,
 b110 K
-b110 \
-b110 g
+b110 [
+b110 _
 #34
 b11111010 4
 b11111010 J
-b11111010 h
+b11111010 `
 #36
 1"
 #37
-b1000 `
+b1000 e
 b10000 !
 b10000 0
 b10000 V
@@ -465,10 +669,10 @@ b0 H
 b0 X
 b1 .
 b1 G
-b1 Z
+b1 \
 b1 1
 b1 E
-b1 e
+b1 ]
 b1000000000000000000000001 #
 b1000000000000000000000001 %
 b1000000000000000000000001 B
@@ -489,22 +693,22 @@ b1 ?
 18
 b1 9
 b1 :
-b1 f
+b1 ^
 0"
 #41
 1(
 b0 +
 b0 ;
 b0 W
-b11111110 <
 b10 =
+b11111110 <
 b11111010 ?
 b0 >
 b10100 U
 b1 ,
 b1 K
-b1 \
-b1 g
+b1 [
+b1 _
 #42
 b11111111 &
 b11111111 @
@@ -514,10 +718,10 @@ b11111111 I
 b11111111 M
 b11111111 4
 b11111111 J
-b11111111 h
+b11111111 `
 #43
-b110 =
 b11111111 <
+b110 =
 b11111111 ?
 #44
 0(
@@ -530,13 +734,10 @@ b101 >
 b10100 !
 b10100 0
 b10100 V
-b101 ]
+b101 b
 #46
 b11000 R
 b11000 S
-b101 -
-b101 A
-b101 [
 #47
 b100 T
 b1 2
@@ -550,29 +751,32 @@ b1 H
 b1 X
 b10 .
 b10 G
-b10 Z
+b10 \
 b111 1
 b111 E
-b111 e
-b101 =
+b111 ]
 b111000000010000000000000010 #
 b111000000010000000000000010 %
 b111000000010000000000000010 B
 b11000 U
+b101 -
+b101 A
+b101 Y
 #48
+17
+0*
+b101 =
+0"
+#49
 b100 +
 b100 ;
 b100 W
-17
-0*
-b100 >
-0"
-#49
 b11100 U
 b11 ,
 b11 K
-b11 \
-b11 g
+b11 [
+b11 _
+b100 >
 #50
 b11111101 &
 b11111101 @
@@ -582,7 +786,7 @@ b11111101 I
 b11111101 M
 b11111101 4
 b11111101 J
-b11111101 h
+b11111101 `
 #51
 b11111101 <
 b11111101 ?
@@ -612,10 +816,10 @@ b101 H
 b101 X
 b0 .
 b0 G
-b0 Z
+b0 \
 b110 1
 b110 E
-b110 e
+b110 ]
 b110111111010000000000000000 #
 b110111111010000000000000000 %
 b110111111010000000000000000 B
@@ -638,7 +842,7 @@ b11111101 W
 08
 b0 9
 b0 :
-b0 f
+b0 ^
 0"
 #57
 1(
@@ -649,18 +853,18 @@ b10000 R
 b101 '
 b101 I
 b101 M
-b101 <
 b0 =
+b101 <
 b0 ?
 b10000 U
 b101 ,
 b101 K
-b101 \
-b101 g
+b101 [
+b101 _
 #58
 b11111011 4
 b11111011 J
-b11111011 h
+b11111011 `
 b101 >
 #60
 1"
@@ -686,10 +890,10 @@ b0 H
 b0 X
 b1 .
 b1 G
-b1 Z
+b1 \
 b1 1
 b1 E
-b1 e
+b1 ]
 b1000 R
 b1000000000000000000000001 #
 b1000000000000000000000001 %
@@ -715,7 +919,7 @@ b1 ?
 18
 b1 9
 b1 :
-b1 f
+b1 ^
 1*
 0"
 #65
@@ -729,8 +933,8 @@ b0 >
 b10100 U
 b1 ,
 b1 K
-b1 \
-b1 g
+b1 [
+b1 _
 #66
 b11111111 &
 b11111111 @
@@ -740,7 +944,7 @@ b11111111 I
 b11111111 M
 b11111111 4
 b11111111 J
-b11111111 h
+b11111111 `
 #67
 b101 =
 b11111111 ?
@@ -752,16 +956,13 @@ b100 W
 b100 >
 1"
 #69
-b100 ]
+b100 b
 b10100 !
 b10100 0
 b10100 V
 #70
 b11000 R
 b11000 S
-b100 -
-b100 A
-b100 [
 #71
 b100 T
 b1 2
@@ -775,29 +976,32 @@ b1 H
 b1 X
 b10 .
 b10 G
-b10 Z
+b10 \
 b111 1
 b111 E
-b111 e
-b100 =
+b111 ]
 b111000000010000000000000010 #
 b111000000010000000000000010 %
 b111000000010000000000000010 B
+b100 -
+b100 A
+b100 Y
 b11000 U
 #72
+17
+0*
+b100 =
+0"
+#73
 b11 +
 b11 ;
 b11 W
-17
-0*
-b11 >
-0"
-#73
 b11100 U
 b11 ,
 b11 K
-b11 \
-b11 g
+b11 [
+b11 _
+b11 >
 #74
 b11111101 &
 b11111101 @
@@ -807,7 +1011,7 @@ b11111101 I
 b11111101 M
 b11111101 4
 b11111101 J
-b11111101 h
+b11111101 `
 #75
 b11111101 <
 b11111101 ?
@@ -837,10 +1041,10 @@ b101 H
 b101 X
 b0 .
 b0 G
-b0 Z
+b0 \
 b110 1
 b110 E
-b110 e
+b110 ]
 b110111111010000000000000000 #
 b110111111010000000000000000 %
 b110111111010000000000000000 B
@@ -863,7 +1067,7 @@ b11111101 W
 08
 b0 9
 b0 :
-b0 f
+b0 ^
 0"
 #81
 1(
@@ -874,18 +1078,18 @@ b10000 R
 b100 '
 b100 I
 b100 M
-b100 <
 b0 =
+b100 <
 b0 ?
 b10000 U
 b100 ,
 b100 K
-b100 \
-b100 g
+b100 [
+b100 _
 #82
 b11111100 4
 b11111100 J
-b11111100 h
+b11111100 `
 b100 >
 #84
 1"
@@ -911,10 +1115,10 @@ b0 H
 b0 X
 b1 .
 b1 G
-b1 Z
+b1 \
 b1 1
 b1 E
-b1 e
+b1 ]
 b1000 R
 b1000000000000000000000001 #
 b1000000000000000000000001 %
@@ -940,7 +1144,7 @@ b1 ?
 18
 b1 9
 b1 :
-b1 f
+b1 ^
 1*
 0"
 #89
@@ -948,15 +1152,15 @@ b1 f
 b0 +
 b0 ;
 b0 W
-b11111100 <
 b100 =
+b11111100 <
 b11111100 ?
 b0 >
 b10100 U
 b1 ,
 b1 K
-b1 \
-b1 g
+b1 [
+b1 _
 #90
 b11111111 &
 b11111111 @
@@ -966,7 +1170,7 @@ b11111111 I
 b11111111 M
 b11111111 4
 b11111111 J
-b11111111 h
+b11111111 `
 #91
 b11111111 <
 b11111111 ?
@@ -978,16 +1182,13 @@ b11 W
 b11 >
 1"
 #93
-b11 ]
+b11 b
 b10100 !
 b10100 0
 b10100 V
 #94
 b11000 R
 b11000 S
-b11 -
-b11 A
-b11 [
 #95
 b100 T
 b1 2
@@ -1001,29 +1202,32 @@ b1 H
 b1 X
 b10 .
 b10 G
-b10 Z
+b10 \
 b111 1
 b111 E
-b111 e
-b11 =
+b111 ]
 b111000000010000000000000010 #
 b111000000010000000000000010 %
 b111000000010000000000000010 B
+b11 -
+b11 A
+b11 Y
 b11000 U
 #96
+17
+0*
+b11 =
+0"
+#97
 b10 +
 b10 ;
 b10 W
-17
-0*
-b10 >
-0"
-#97
 b11100 U
 b11 ,
 b11 K
-b11 \
-b11 g
+b11 [
+b11 _
+b10 >
 #98
 b11111101 &
 b11111101 @
@@ -1033,7 +1237,7 @@ b11111101 I
 b11111101 M
 b11111101 4
 b11111101 J
-b11111101 h
+b11111101 `
 #99
 b1 =
 b11111101 ?
@@ -1066,10 +1270,10 @@ b100 H
 b100 X
 b11 .
 b11 G
-b11 Z
+b11 \
 b0 1
 b0 E
-b0 e
+b0 ]
 b100100 R
 b1000000000000000011 #
 b1000000000000000011 %
@@ -1096,30 +1300,30 @@ b1000 N
 b1000 '
 b1000 I
 b1000 M
-b11 <
 b11 =
+b11 <
 b11 ?
 b110000 U
 b1000 ,
 b1000 K
-b1000 \
-b1000 g
+b1000 [
+b1000 _
 #106
 0(
 b1011 +
 b1011 ;
 b1011 W
-b0 =
 b1011 <
+b0 =
 b1000 ?
 b11111000 4
 b11111000 J
-b11111000 h
+b11111000 `
 b1011 >
 #108
 1"
 #109
-b1011 a
+b1011 f
 b100000 !
 b100000 0
 b100000 V
@@ -1139,13 +1343,13 @@ bx H
 bx X
 bx .
 bx G
-bx Z
+bx \
 bx /
 bx F
-bx Y
+bx Z
 bx 1
 bx E
-bx e
+bx ]
 bx #
 bx %
 bx B
@@ -1153,7 +1357,33 @@ b110100 U
 #112
 0"
 #113
+bx &
+bx @
+bx N
+bx '
+bx I
+bx M
 bx U
+bx ,
+bx K
+bx [
+bx _
+bx -
+bx A
+bx Y
+#114
+bx ?
+bx 4
+bx J
+bx `
+bx =
+bx <
+#115
+x(
+bx +
+bx ;
+bx W
+bx >
 #116
 1"
 #117

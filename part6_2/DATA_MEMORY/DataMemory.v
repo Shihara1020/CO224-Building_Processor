@@ -45,10 +45,10 @@ module data_memory(
     begin
         if(readaccess)
         begin
-            readdata = #40 memory_array[{address,2'b00}];
-            readdata = #40 memory_array[{address,2'b01}];
-            readdata = #40 memory_array[{address,2'b10}];
-            readdata = #40 memory_array[{address,2'b11}];
+            readdata[7:0] = #40 memory_array[{address,2'b00}];
+            readdata[15:0] = #40 memory_array[{address,2'b01}];
+            readdata[23:16] = #40 memory_array[{address,2'b10}];
+            readdata[31:24] = #40 memory_array[{address,2'b11}];
             busywait = 0;
             readaccess = 0;
         end

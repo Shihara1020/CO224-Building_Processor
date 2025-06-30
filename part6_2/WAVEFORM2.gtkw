@@ -1,0 +1,82 @@
+[*]
+[*] GTKWave Analyzer v3.3.116 (w)1999-2023 BSI
+[*] Sun Jun 29 17:47:04 2025
+[*]
+[dumpfile] "/mnt/c/Users/eranj/Desktop/ACADAMIC FOLDER/Fourth Semester/CO224-COMPUTER ARCHITECTURE/Building_Prosessor/part6_2/cpu_wavedata.vcd"
+[dumpfile_mtime] "Sun Jun 29 16:31:26 2025"
+[dumpfile_size] 56487
+[savefile] "/mnt/c/Users/eranj/Desktop/ACADAMIC FOLDER/Fourth Semester/CO224-COMPUTER ARCHITECTURE/Building_Prosessor/part6_2/WAVEFORM2.gtkw"
+[timestart] 0
+[size] 1920 969
+[pos] 32763 32816
+*-13.200000 9000 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
+[treeopen] cpu_tb.
+[treeopen] cpu_tb.cache_unit.
+[treeopen] cpu_tb.mycpu.
+[sst_width] 40
+[signals_width] 174
+[sst_expanded] 0
+[sst_vpaned_height] 382
+@28
+cpu_tb.CLK
+@24
+cpu_tb.PC[31:0]
+@200
+-INSTRUCTION DECODE
+@28
+cpu_tb.mycpu.DECODER.INSTRUCTION[31:0]
+@200
+-ALU UNIT
+@24
+cpu_tb.mycpu.ALU.DATA1[7:0]
+cpu_tb.mycpu.ALU.DATA2[7:0]
+cpu_tb.mycpu.ALU.RESULT[7:0]
+@200
+-REGISTER
+@24
+cpu_tb.mycpu.REGFILE.register0[7:0]
+cpu_tb.mycpu.REGFILE.register1[7:0]
+cpu_tb.mycpu.REGFILE.register2[7:0]
+cpu_tb.mycpu.REGFILE.register3[7:0]
+cpu_tb.mycpu.REGFILE.register4[7:0]
+cpu_tb.mycpu.REGFILE.register5[7:0]
+cpu_tb.mycpu.REGFILE.register6[7:0]
+cpu_tb.mycpu.REGFILE.register7[7:0]
+@200
+-CACHE
+@28
+cpu_tb.cache_unit.BUSYWAIT
+cpu_tb.cache_unit.WRITE
+cpu_tb.cache_unit.READ
+@22
+cpu_tb.cache_unit.ADDRESS[7:0]
+cpu_tb.cache_unit.WRITEDATA[7:0]
+cpu_tb.cache_unit.READDATA[7:0]
+@200
+-INDEXING
+@28
+cpu_tb.cache_unit.DIRTY
+cpu_tb.cache_unit.VALID
+cpu_tb.cache_unit.CACHE_TAG[2:0]
+@22
+cpu_tb.cache_unit.DATABLOCK[31:0]
+@200
+-hit or not
+@28
+cpu_tb.cache_unit.tag_comp
+cpu_tb.cache_unit.VALID
+cpu_tb.cache_unit.HIT
+cpu_tb.cache_unit.state[2:0]
+cpu_tb.cache_unit.next_state[2:0]
+@200
+-DATA MEMORY
+@28
+cpu_tb.data_memory_unit.read
+cpu_tb.data_memory_unit.write
+@22
+cpu_tb.data_memory_unit.readdata[31:0]
+cpu_tb.data_memory_unit.writedata[31:0]
+@28
+cpu_tb.data_memory_unit.busywait
+[pattern_trace] 1
+[pattern_trace] 0

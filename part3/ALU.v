@@ -3,7 +3,6 @@
 // Description: Complete ALU with multiple arithmetic and logic operations
 // =======================================================================
 
-
 // ------------------------------------------------
 //           FORWARD Operation Module
 // ------------------------------------------------

@@ -3,7 +3,6 @@
 // Author: D.M.E.S. Dewagedara / W.S.S. Perera 
 
 `include "CPU.v"
-
 module cpu_tb;
 
     reg CLK, RESET;
@@ -55,7 +54,10 @@ module cpu_tb;
     
         // generate files needed to plot the waveform using GTKWave
         $dumpfile("cpu_wavedata.vcd");
-		$dumpvars(3,cpu_tb,cpu_tb.mycpu.REGFILE.register0,cpu_tb.mycpu.REGFILE.register1,cpu_tb.mycpu.REGFILE.register2,cpu_tb.mycpu.REGFILE.register3,cpu_tb.mycpu.REGFILE.register4,cpu_tb.mycpu.REGFILE.register5,cpu_tb.mycpu.REGFILE.register6,cpu_tb.mycpu.REGFILE.register7);
+		for (integer i = 0; i < 8; i = i + 1) 
+            begin
+                $dumpvars(3,cpu_tb,cpu_tb.mycpu.REGFILE.registers[i]);
+            end
         
         CLK = 1'b0;
         RESET = 1'b0;

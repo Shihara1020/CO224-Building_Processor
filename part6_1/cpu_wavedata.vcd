@@ -1,5 +1,5 @@
 $date
-	Wed Jun 25 14:00:40 2025
+	Mon Jun 30 11:49:54 2025
 $end
 $version
 	Icarus Verilog
@@ -1398,28 +1398,20 @@ $upscope $end
 $scope module REGFILE $end
 $var wire 1 l# CLK $end
 $var wire 3 T$ INADDRESS [2:0] $end
-$var wire 3 U$ OUT1ADDRESS [2:0] $end
-$var wire 3 V$ OUT2ADDRESS [2:0] $end
+$var wire 8 U$ OUT1 [7:0] $end
+$var wire 3 V$ OUT1ADDRESS [2:0] $end
+$var wire 8 W$ OUT2 [7:0] $end
+$var wire 3 X$ OUT2ADDRESS [2:0] $end
 $var wire 1 n# RESET $end
 $var wire 1 !$ WRITE $end
-$var wire 8 W$ IN [7:0] $end
-$var reg 8 X$ OUT1 [7:0] $end
-$var reg 8 Y$ OUT2 [7:0] $end
-$var reg 8 Z$ register0 [7:0] $end
-$var reg 8 [$ register1 [7:0] $end
-$var reg 8 \$ register2 [7:0] $end
-$var reg 8 ]$ register3 [7:0] $end
-$var reg 8 ^$ register4 [7:0] $end
-$var reg 8 _$ register5 [7:0] $end
-$var reg 8 `$ register6 [7:0] $end
-$var reg 8 a$ register7 [7:0] $end
+$var wire 8 Y$ IN [7:0] $end
 $upscope $end
 $scope module control $end
 $var wire 1 j# BUSYWAIT $end
-$var wire 8 b$ OPCODE [7:0] $end
-$var reg 3 c$ ALUOP [2:0] $end
+$var wire 8 Z$ OPCODE [7:0] $end
+$var reg 3 [$ ALUOP [2:0] $end
 $var reg 1 /$ ALUSRC $end
-$var reg 2 d$ BRANCH [1:0] $end
+$var reg 2 \$ BRANCH [1:0] $end
 $var reg 1 -$ HOLD $end
 $var reg 1 *$ NEMUX $end
 $var reg 1 h# READ $end
@@ -1428,14 +1420,255 @@ $var reg 1 !$ WRITEENABLE $end
 $var reg 1 }# WRITESRC $end
 $upscope $end
 $scope module twos $end
-$var wire 8 e$ DATA_IN [7:0] $end
-$var reg 8 f$ DATA_OUT [7:0] $end
+$var wire 8 ]$ DATA_IN [7:0] $end
+$var reg 8 ^$ DATA_OUT [7:0] $end
 $upscope $end
 $scope module writedataSelector $end
-$var wire 8 g$ DATA1 [7:0] $end
-$var wire 8 h$ DATA2 [7:0] $end
+$var wire 8 _$ DATA1 [7:0] $end
+$var wire 8 `$ DATA2 [7:0] $end
 $var wire 1 }# select $end
-$var wire 8 i$ OUTPUT [7:0] $end
+$var wire 8 a$ OUTPUT [7:0] $end
+$upscope $end
+$upscope $end
+$scope begin $ivl_for_loop1 $end
+$var integer 32 b$ i [31:0] $end
+$upscope $end
+$upscope $end
+$scope module cpu_tb $end
+$scope module mycpu $end
+$scope module REGFILE $end
+$var reg 8 c$ \registers[0] [7:0] $end
+$upscope $end
+$upscope $end
+$upscope $end
+$scope module cpu_tb $end
+$scope module data_memory_unit $end
+$upscope $end
+$scope module mycpu $end
+$scope module ALU $end
+$upscope $end
+$scope module DECODER $end
+$upscope $end
+$scope module MUX1 $end
+$upscope $end
+$scope module MUX2 $end
+$upscope $end
+$scope module PCUNIT $end
+$upscope $end
+$scope module REGFILE $end
+$upscope $end
+$scope module control $end
+$upscope $end
+$scope module twos $end
+$upscope $end
+$scope module writedataSelector $end
+$upscope $end
+$upscope $end
+$scope begin $ivl_for_loop1 $end
+$upscope $end
+$upscope $end
+$scope module cpu_tb $end
+$scope module mycpu $end
+$scope module REGFILE $end
+$var reg 8 d$ \registers[1] [7:0] $end
+$upscope $end
+$upscope $end
+$upscope $end
+$scope module cpu_tb $end
+$scope module data_memory_unit $end
+$upscope $end
+$scope module mycpu $end
+$scope module ALU $end
+$upscope $end
+$scope module DECODER $end
+$upscope $end
+$scope module MUX1 $end
+$upscope $end
+$scope module MUX2 $end
+$upscope $end
+$scope module PCUNIT $end
+$upscope $end
+$scope module REGFILE $end
+$upscope $end
+$scope module control $end
+$upscope $end
+$scope module twos $end
+$upscope $end
+$scope module writedataSelector $end
+$upscope $end
+$upscope $end
+$scope begin $ivl_for_loop1 $end
+$upscope $end
+$upscope $end
+$scope module cpu_tb $end
+$scope module mycpu $end
+$scope module REGFILE $end
+$var reg 8 e$ \registers[2] [7:0] $end
+$upscope $end
+$upscope $end
+$upscope $end
+$scope module cpu_tb $end
+$scope module data_memory_unit $end
+$upscope $end
+$scope module mycpu $end
+$scope module ALU $end
+$upscope $end
+$scope module DECODER $end
+$upscope $end
+$scope module MUX1 $end
+$upscope $end
+$scope module MUX2 $end
+$upscope $end
+$scope module PCUNIT $end
+$upscope $end
+$scope module REGFILE $end
+$upscope $end
+$scope module control $end
+$upscope $end
+$scope module twos $end
+$upscope $end
+$scope module writedataSelector $end
+$upscope $end
+$upscope $end
+$scope begin $ivl_for_loop1 $end
+$upscope $end
+$upscope $end
+$scope module cpu_tb $end
+$scope module mycpu $end
+$scope module REGFILE $end
+$var reg 8 f$ \registers[3] [7:0] $end
+$upscope $end
+$upscope $end
+$upscope $end
+$scope module cpu_tb $end
+$scope module data_memory_unit $end
+$upscope $end
+$scope module mycpu $end
+$scope module ALU $end
+$upscope $end
+$scope module DECODER $end
+$upscope $end
+$scope module MUX1 $end
+$upscope $end
+$scope module MUX2 $end
+$upscope $end
+$scope module PCUNIT $end
+$upscope $end
+$scope module REGFILE $end
+$upscope $end
+$scope module control $end
+$upscope $end
+$scope module twos $end
+$upscope $end
+$scope module writedataSelector $end
+$upscope $end
+$upscope $end
+$scope begin $ivl_for_loop1 $end
+$upscope $end
+$upscope $end
+$scope module cpu_tb $end
+$scope module mycpu $end
+$scope module REGFILE $end
+$var reg 8 g$ \registers[4] [7:0] $end
+$upscope $end
+$upscope $end
+$upscope $end
+$scope module cpu_tb $end
+$scope module data_memory_unit $end
+$upscope $end
+$scope module mycpu $end
+$scope module ALU $end
+$upscope $end
+$scope module DECODER $end
+$upscope $end
+$scope module MUX1 $end
+$upscope $end
+$scope module MUX2 $end
+$upscope $end
+$scope module PCUNIT $end
+$upscope $end
+$scope module REGFILE $end
+$upscope $end
+$scope module control $end
+$upscope $end
+$scope module twos $end
+$upscope $end
+$scope module writedataSelector $end
+$upscope $end
+$upscope $end
+$scope begin $ivl_for_loop1 $end
+$upscope $end
+$upscope $end
+$scope module cpu_tb $end
+$scope module mycpu $end
+$scope module REGFILE $end
+$var reg 8 h$ \registers[5] [7:0] $end
+$upscope $end
+$upscope $end
+$upscope $end
+$scope module cpu_tb $end
+$scope module data_memory_unit $end
+$upscope $end
+$scope module mycpu $end
+$scope module ALU $end
+$upscope $end
+$scope module DECODER $end
+$upscope $end
+$scope module MUX1 $end
+$upscope $end
+$scope module MUX2 $end
+$upscope $end
+$scope module PCUNIT $end
+$upscope $end
+$scope module REGFILE $end
+$upscope $end
+$scope module control $end
+$upscope $end
+$scope module twos $end
+$upscope $end
+$scope module writedataSelector $end
+$upscope $end
+$upscope $end
+$scope begin $ivl_for_loop1 $end
+$upscope $end
+$upscope $end
+$scope module cpu_tb $end
+$scope module mycpu $end
+$scope module REGFILE $end
+$var reg 8 i$ \registers[6] [7:0] $end
+$upscope $end
+$upscope $end
+$upscope $end
+$scope module cpu_tb $end
+$scope module data_memory_unit $end
+$upscope $end
+$scope module mycpu $end
+$scope module ALU $end
+$upscope $end
+$scope module DECODER $end
+$upscope $end
+$scope module MUX1 $end
+$upscope $end
+$scope module MUX2 $end
+$upscope $end
+$scope module PCUNIT $end
+$upscope $end
+$scope module REGFILE $end
+$upscope $end
+$scope module control $end
+$upscope $end
+$scope module twos $end
+$upscope $end
+$scope module writedataSelector $end
+$upscope $end
+$upscope $end
+$scope begin $ivl_for_loop1 $end
+$upscope $end
+$upscope $end
+$scope module cpu_tb $end
+$scope module mycpu $end
+$scope module REGFILE $end
+$var reg 8 j$ \registers[7] [7:0] $end
 $upscope $end
 $upscope $end
 $upscope $end
@@ -1445,6 +1678,7 @@ $dumpall
 $end
 #0
 $dumpvars
+bx j$
 bx i$
 bx h$
 bx g$
@@ -1452,7 +1686,7 @@ bx f$
 bx e$
 bx d$
 bx c$
-bx b$
+b1000 b$
 bx a$
 bx `$
 bx _$
@@ -2073,14 +2307,14 @@ b100000000 u#
 b0 i#
 b0 '$
 b0 S$
-b0 a$
-b0 `$
-b0 _$
-b0 ^$
-b0 ]$
-b0 \$
-b0 [$
-b0 Z$
+b0 j$
+b0 i$
+b0 h$
+b0 g$
+b0 f$
+b0 e$
+b0 d$
+b0 c$
 #6
 b100 O$
 0o#
@@ -2098,13 +2332,13 @@ b0 D$
 b0 T$
 b11 %$
 b11 C$
-b11 V$
+b11 X$
 b0 &$
 b0 B$
-b0 U$
+b0 V$
 b101 ($
 b101 A$
-b101 b$
+b101 Z$
 b101000000000000000000001011 m#
 b101000000000000000000001011 w#
 b101000000000000000000001011 >$
@@ -2118,25 +2352,25 @@ b1011 J$
 0}#
 b0 .$
 b0 R$
-b0 d$
+b0 \$
 0*$
 0/$
 b0 1$
 b0 2$
-b0 c$
+b0 [$
 1!$
 0l#
 #9
 b1011 "$
-b1011 W$
-b1011 i$
+b1011 Y$
+b1011 a$
 0|#
 b1011 k#
 b1011 q#
 b1011 v#
 b1011 0$
 b1011 3$
-b1011 g$
+b1011 _$
 b0 {#
 b0 E$
 b0 I$
@@ -2146,18 +2380,18 @@ b1011 ;$
 b100 Q$
 b0 #$
 b0 G$
-b0 Y$
-b0 e$
+b0 W$
+b0 ]$
 b0 e#
 b0 p#
 b0 y#
 b0 $$
 b0 =$
-b0 X$
+b0 U$
 #10
 b0 +$
 b0 F$
-b0 f$
+b0 ^$
 b0 6$
 b1011 :$
 #11
@@ -2170,16 +2404,10 @@ b0 7$
 b100 i#
 b100 '$
 b100 S$
-b1011 Z$
+b1011 c$
 #14
 b1000 N$
 b1000 O$
-b1011 e#
-b1011 p#
-b1011 y#
-b1011 $$
-b1011 =$
-b1011 X$
 #15
 b100 P$
 b1 z#
@@ -2196,49 +2424,47 @@ b1 D$
 b1 T$
 b1 %$
 b1 C$
-b1 V$
-b1011 9$
+b1 X$
 b101000000010000000000000001 m#
 b101000000010000000000000001 w#
 b101000000010000000000000001 >$
 b1000 Q$
+b1011 e#
+b1011 p#
+b1011 y#
+b1011 $$
+b1011 =$
+b1011 U$
 #16
 b1 "$
-b1 W$
-b1 i$
+b1 Y$
+b1 a$
 b1 k#
 b1 q#
 b1 v#
 b1 0$
 b1 3$
-b1 g$
-b1 9$
+b1 _$
 b1 ;$
-b1100 :$
+b1 9$
 0l#
 #17
-b10000101 4$
-b101 5$
 b10110 6$
-b1011 7$
+b101 5$
+b10000101 4$
 b1100 Q$
+b1011 7$
+b1100 :$
 #20
 1l#
 #21
-b1 [$
+b1 d$
 b1000 i#
 b1000 '$
 b1000 S$
 #22
 b1100 N$
-b1 {#
-b1 E$
-b1 I$
 b1100 O$
-b1 #$
-b1 G$
-b1 Y$
-b1 e$
 #23
 b1000 P$
 b101 z#
@@ -2255,26 +2481,33 @@ b10 D$
 b10 T$
 b101 %$
 b101 C$
-b101 V$
-b11111111 +$
-b11111111 F$
-b11111111 f$
+b101 X$
+b1 {#
+b1 E$
+b1 I$
 b101000000100000000000000101 m#
 b101000000100000000000000101 w#
 b101000000100000000000000101 >$
+b1 #$
+b1 G$
+b1 W$
+b1 ]$
 b10000 Q$
 #24
 b101 "$
-b101 W$
-b101 i$
+b101 Y$
+b101 a$
 b101 k#
 b101 q#
 b101 v#
 b101 0$
 b101 3$
-b101 g$
+b101 _$
 b1111 8$
 b101 ;$
+b11111111 +$
+b11111111 F$
+b11111111 ^$
 0l#
 #25
 b0 {#
@@ -2288,19 +2521,19 @@ b10000 :$
 b10100 Q$
 b0 #$
 b0 G$
-b0 Y$
-b0 e$
+b0 W$
+b0 ]$
 #26
 b0 +$
 b0 F$
-b0 f$
+b0 ^$
 #28
 1l#
 #29
 b1100 i#
 b1100 '$
 b1100 S$
-b101 \$
+b101 e$
 #30
 b10000 N$
 b10000 O$
@@ -2320,25 +2553,25 @@ b0 D$
 b0 T$
 b1 %$
 b1 C$
-b1 V$
+b1 X$
 b10000 ($
 b10000 A$
-b10000 b$
+b10000 Z$
 b10000000000000000000000000001 m#
 b10000000000000000000000000001 w#
 b10000000000000000000000000001 >$
 b11000 Q$
 #32
 b1 "$
-b1 W$
-b1 i$
+b1 Y$
+b1 a$
 1-$
 b1 k#
 b1 q#
 b1 v#
 b1 0$
 b1 3$
-b1 g$
+b1 _$
 1t#
 1j#
 b0 z#
@@ -2352,8 +2585,8 @@ b1 ;$
 0l#
 #33
 b0 "$
-b0 W$
-b0 i$
+b0 Y$
+b0 a$
 1|#
 b1 z#
 b1 <$
@@ -2363,7 +2596,7 @@ b0 q#
 b0 v#
 b0 0$
 b0 3$
-b0 g$
+b0 _$
 b1 {#
 b1 E$
 b1 I$
@@ -2373,24 +2606,24 @@ b1011 :$
 b10000 Q$
 b1 #$
 b1 G$
-b1 Y$
-b1 e$
+b1 W$
+b1 ]$
 #34
 b1 "$
-b1 W$
-b1 i$
+b1 Y$
+b1 a$
 0|#
 b1 k#
 b1 q#
 b1 v#
 b1 0$
 b1 3$
-b1 g$
+b1 _$
 b1 9$
 b1 ;$
 b11111111 +$
 b11111111 F$
-b11111111 f$
+b11111111 ^$
 #35
 b10110 6$
 b101 5$
@@ -2437,13 +2670,13 @@ b10 ?$
 b10 H$
 b10 %$
 b10 C$
-b10 V$
+b10 X$
 b10 &$
 b10 B$
-b10 U$
+b10 V$
 b10001 ($
 b10001 A$
-b10001 b$
+b10001 Z$
 b10001000000000000001000000010 m#
 b10001000000000000001000000010 w#
 b10001000000000000001000000010 >$
@@ -2460,34 +2693,34 @@ b10 J$
 0l#
 #81
 b10 "$
-b10 W$
-b10 i$
+b10 Y$
+b10 a$
 b10 k#
 b10 q#
 b10 v#
 b10 0$
 b10 3$
-b10 g$
+b10 _$
 b101 {#
 b101 E$
 b101 I$
-b0 9$
 b111 8$
+b0 9$
 b10 ;$
 b101 #$
 b101 G$
-b101 Y$
-b101 e$
+b101 W$
+b101 ]$
 b101 e#
 b101 p#
 b101 y#
 b101 $$
 b101 =$
-b101 X$
+b101 U$
 #82
 b11111011 +$
 b11111011 F$
-b11111011 f$
+b11111011 ^$
 b111 :$
 #83
 b10100 6$
@@ -2544,13 +2777,13 @@ b11 D$
 b11 T$
 b1 %$
 b1 C$
-b1 V$
+b1 X$
 b0 &$
 b0 B$
-b0 U$
+b0 V$
 b1110 ($
 b1110 A$
-b1110 b$
+b1110 Z$
 b1110000000110000000000000001 m#
 b1110000000110000000000000001 w#
 b1110000000110000000000000001 >$
@@ -2562,17 +2795,17 @@ b1 q#
 b1 v#
 b1 0$
 b1 3$
-b1 g$
+b1 _$
 bx "$
-bx W$
-bx i$
+bx Y$
+bx a$
 1r#
 1j#
 b101 z#
 b101 <$
 b101 J$
-b101 8$
 b1 9$
+b101 8$
 b1 ;$
 1}#
 1h#
@@ -2588,7 +2821,7 @@ b101 q#
 b101 v#
 b101 0$
 b101 3$
-b101 g$
+b101 _$
 b1 {#
 b1 E$
 b1 I$
@@ -2598,26 +2831,26 @@ b10000 :$
 b100100 Q$
 b1 #$
 b1 G$
-b1 Y$
-b1 e$
+b1 W$
+b1 ]$
 b1011 e#
 b1011 p#
 b1011 y#
 b1011 $$
 b1011 =$
-b1011 X$
+b1011 U$
 #130
 b1 k#
 b1 q#
 b1 v#
 b1 0$
 b1 3$
-b1 g$
+b1 _$
 b1011 8$
 b1 ;$
 b11111111 +$
 b11111111 F$
-b11111111 f$
+b11111111 ^$
 #131
 b10110 6$
 b101 5$
@@ -2627,43 +2860,51 @@ b1011 7$
 #132
 1l#
 #133
-bx ]$
+bx f$
 #136
 0l#
 #140
 1l#
+#141
+bx f$
 #144
 0l#
 #148
 1l#
+#149
+bx f$
 #152
 0l#
 #156
 1l#
+#157
+bx f$
 #160
 0l#
 #164
 1l#
+#165
+bx f$
 #168
 0l#
 #172
 0h#
 0-$
 b1011 "$
-b1011 W$
-b1011 i$
+b1011 Y$
+b1011 a$
 1l#
 0r#
 0j#
 b1011 g#
 b1011 s#
 b1011 x#
-b1011 h$
+b1011 `$
 #173
 b11000 i#
 b11000 '$
 b11000 S$
-b1011 ]$
+b1011 f$
 #174
 b11100 N$
 b11100 O$
@@ -2680,13 +2921,13 @@ bx D$
 bx T$
 bx %$
 bx C$
-bx V$
+bx X$
 bx &$
 bx B$
-bx U$
+bx V$
 bx ($
 bx A$
-bx b$
+bx Z$
 bx m#
 bx w#
 bx >$
@@ -2694,7 +2935,43 @@ b101000 Q$
 #176
 0l#
 #177
+bx z#
+bx <$
+bx J$
+bx {#
+bx E$
+bx I$
 bx Q$
+bx #$
+bx G$
+bx W$
+bx ]$
+bx e#
+bx p#
+bx y#
+bx $$
+bx =$
+bx U$
+#178
+x|#
+bx k#
+bx q#
+bx v#
+bx 0$
+bx 3$
+bx _$
+bx ;$
+bx +$
+bx F$
+bx ^$
+bx 8$
+bx 9$
+#179
+bx 5$
+bx 4$
+bx 6$
+bx 7$
+bx :$
 #180
 1l#
 #181

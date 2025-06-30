@@ -2,8 +2,6 @@
 //                         Program Counter (PC) Module
 // 32-bit program counter that increments by 4 on each clock cycle
 //============================================================================
-
-
 module pc_unit(RESET,CLK,PC);
     input RESET;            // Reset signal - when high, PC is set to 0
     input CLK;              // Clock signal - PC updates on positive edge

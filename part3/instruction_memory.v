@@ -2,7 +2,7 @@
 //                       INSTRUCTION FORMAT SPECIFICATION
 //==============================================================================
 /*
-
+`timescale  1ns/100ps
 Field Descriptions:
 - OPCODE:    8-bit operation code (bits 31-24)
 - WRITEREG:  3-bit destination register address (bits 20-18)
@@ -28,6 +28,7 @@ module Instruction_decode(INSTRUCTION,OPCODE,IMMEDIATE,READREG1,READREG2,WRITERE
             IMMEDIATE=INSTRUCTION[7:0];     // Bits 7-0:   Immediate value
     end
 endmodule
+
 
 
 
