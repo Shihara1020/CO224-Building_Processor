@@ -2,7 +2,7 @@
 //                      2-to-1 Multiplexer Module
 // Selects between two 8-bit signed inputs based on select signal
 //============================================================================
-
+`timescale  1ns/100ps
 module mux_unit(DATA1,DATA2,select,OUTPUT);
     input signed[7:0]DATA1;    // First data input (selected when select = 0)
     input signed[7:0]DATA2;    // Second data input (selected when select = 1)

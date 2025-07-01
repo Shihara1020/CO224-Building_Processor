@@ -7,13 +7,13 @@
 // - Sign-extended 8-bit offset for branch target calculation
 // - Synchronous reset capability
 //============================================================================
-
-module pc_unit(RESET,CLK,PC,BRANCH,ZERO,OFFSET,BUSYWAIT);
+`timescale  1ns/100ps
+module pc_unit(RESET,CLK,PC,BRANCH,ZERO,OFFSET,HOLD);
     //========== INPUT PORT DECLARATIONS ==========
     input RESET;                    // Reset signal (active high) - sets PC to 0
     input CLK;                      // Clock signal for synchronous PC updates
     input [1:0] BRANCH;             // 2-bit branch control signal
-    input BUSYWAIT;
+    input HOLD;
                                     // [1]: Branch enable, [0]: Branch type selector
     input ZERO;                     // Zero flag from ALU for conditional branching
     input signed [7:0] OFFSET;      // 8-bit signed branch offset (word-aligned)
@@ -60,11 +60,13 @@ module pc_unit(RESET,CLK,PC,BRANCH,ZERO,OFFSET,BUSYWAIT);
     //========== SYNCHRONOUS PC UPDATE LOGIC ==========
     // PC is updated on positive clock edge
     always @(posedge CLK) begin
+
+        #0.001
         if(RESET == 1'b1) begin 
-            PC <= #1 0;        // Reset PC to address 0 with 1 time unit delay
+            #0.999 PC = 0;        // Reset PC to address 0 with 1 time unit delay
         end
-        else if(~BUSYWAIT) begin
-            #1 PC = nextpc;     // Update PC with next calculated value
+        else if(~HOLD) begin
+            #0.999 PC = nextpc;     // Update PC with next calculated value
         end
     end
 

@@ -11,14 +11,19 @@
 `include "instruction_memory.v"
 `include "controlUnit.v"
 `include "ALUSECTION/ALU.v"
-`include "DataMemory.v"
-
-module cpu(PC,INSTRUCTION,CLK,RESET);
+`timescale  1ns/100ps
+module cpu(PC, INSTRUCTION, CLK, RESET,READ,WRITE,BUSYWAIT,ADDRESS,WRITEDATA,MEM_READDATA,INS_BUSYWAIT);
 
     input [31:0] INSTRUCTION;       // 32-bit instruction word from instruction memory
     input CLK;                      // clock 
     input RESET;                    // reset 
     output [31:0] PC;               // 32-bit Program Counter output (current instruction address)
+
+    output  READ;                    // Data memory read enable
+    output WRITE;                    // Data memory write enable
+    output [7:0]WRITEDATA,ADDRESS;
+    input  [7:0]MEM_READDATA;            // Data read from memory
+    input BUSYWAIT,INS_BUSYWAIT;         // Memory busy wait signal
 
     //INTERNAL WIRE DECLARATIONS
     
@@ -36,10 +41,8 @@ module cpu(PC,INSTRUCTION,CLK,RESET);
     wire NEMUX;                     // Negative number MUX selector (0: positive, 1: two's complement)
     wire [1:0] BRANCH;              // 2-bit branch control signals
     wire [2:0] ALUOP;               // 3-bit ALU operation selector
-    wire READ;                      // Data memory read enable
-    wire WRITE;                     // Data memory write enable
-    wire BUSYWAIT;                  // Memory busy wait signal
     wire WRITESRC;                  // Write source selector (0: ALU result, 1: memory data)
+    wire HOLD;
 
     // Register File Signals
     wire signed [7:0] REGOUT1;      // 8-bit signed output from first read port
@@ -57,14 +60,10 @@ module cpu(PC,INSTRUCTION,CLK,RESET);
     wire signed [7:0] mux1_out;     //Output from first MUX (selects between REGOUT2 and its negative)
     wire signed [7:0] mux2_out;     //Output from second MUX (selects between register and immediate)
 
-    // Memory Signals
-    wire signed [7:0]MEMREADDATA;   // Data read from memory
-
-
     
     // 1. Program Counter Unit 
     // Updates PC on each clock cycle based on branch conditions
-    pc_unit PCUNIT(RESET, CLK, PC, BRANCH, ZERO, OFFSET,BUSYWAIT);
+    pc_unit PCUNIT(RESET, CLK, PC, BRANCH, ZERO, OFFSET,HOLD);
 
     // 2. Instruction Decoder
     // Extracts all instruction fields from 32-bit instruction word
@@ -74,12 +73,12 @@ module cpu(PC,INSTRUCTION,CLK,RESET);
     // 3. Control Unit
     // Generates all control signals based on instruction opcode
     // Determines ALU operation, data path routing, and write enables
-    control_unit control(OPCODE, WRITEENABLE, ALUSRC, ALUOP, NEMUX, BRANCH,READ,WRITE,BUSYWAIT,WRITESRC);
+    control_unit control(OPCODE, WRITEENABLE, ALUSRC, ALUOP, NEMUX, BRANCH,READ,WRITE,BUSYWAIT,WRITESRC,HOLD,INS_BUSYWAIT);
 
     // 4. Register File
     // 8-register storage with dual read ports and single write port
     // Provides source operands and stores computation results
-    reg_file REGFILE(REGWRITEDATA, REGOUT1, REGOUT2, WRITEREG, READREG1, READREG2, WRITEENABLE, CLK, RESET);
+    reg_file REGFILE(REGWRITEDATA, REGOUT1, REGOUT2, WRITEREG, READREG1, READREG2, WRITEENABLE, CLK, RESET,HOLD);
 
     // 5. Two's Complement Unit
     // Converts REGOUT2 to its two's complement (negative value)
@@ -106,11 +105,13 @@ module cpu(PC,INSTRUCTION,CLK,RESET);
     alu ALU(REGOUT1, mux2_out, ALUOUTPUT, ALUOP, ZERO);
     
 
+    //9.Third Multiplexer(Select between aluresult and datamemory) 
+    //0-Aluresult -   Output from ALU unit 
+    //1-data-memory - Read data in memory in a particular address
+    mux_unit writedataSelector(ALUOUTPUT,MEM_READDATA,WRITESRC,REGWRITEDATA);
 
-    data_memory data_memory_unit(CLK,RESET,READ,WRITE,ALUOUTPUT,REGOUT1,MEMREADDATA,BUSYWAIT);
-    //select
-    //0-aluresult
-    //1-memorydata
-    mux_unit writedataSelector(ALUOUTPUT,MEMREADDATA,WRITESRC,REGWRITEDATA);
+    assign ADDRESS=ALUOUTPUT; //Forawrd Alu output as the meory address
+    assign WRITEDATA=REGOUT1; //Data written is the data from READREG1 
+
 
 endmodule

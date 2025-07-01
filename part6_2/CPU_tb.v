@@ -1,6 +1,5 @@
 // Computer Architecture (CO224) - Lab 05
 // Design: Testbench of Integrated CPU of Simple Processor
-// Author: Isuru Nawinne
 `timescale  1ns/100ps
 `include "CPU.v"
 `include "DATA_MEMORY/DataMemory.v"
@@ -8,20 +7,26 @@
 
 
 module cpu_tb;
+    // Clock and reset signals
+    reg CLK, RESET; // Clock signal and CPU reset
+    reg RESET_MEM;  // Reset memory
 
-    reg CLK, RESET; // Reset cpu
-    reg RESET_MEM; //  Reset memory 
-    wire [31:0] PC;
-    reg [31:0] INSTRUCTION;
+    // CPU signals
+    wire [31:0] PC;  // Program Counter
+    reg [31:0] INSTRUCTION; // 32-bit instruction word 
     
-    //cache and alu
-    wire [7:0]ADDRESS,WRITEDATA,READDATA;
+    //Cache and Alu singals
+    wire [7:0]ADDRESS;       // Address for data memory access
+    wire [7:0]WRITEDATA;     // Data to write to memory 
+    wire [7:0]READDATA;      // Data read from memory
     wire READ,WRITE,BUSYWAIT;
 
-    //cache and memory
-    wire [5:0]MEM_ADDRESS;
-    wire [31:0]MEM_WRITEDATA,MEM_READDATA;
-    wire MEM_READ,MEM_WRITE,MEM_BUSYWAIT;
+    //Cache and Memory singals
+    wire [5:0]MEM_ADDRESS;    // Memory address for cache-memory communication
+    wire [31:0]MEM_WRITEDATA; // Data written from cache to memory
+    wire [31:0]MEM_READDATA;  // Data read from memory to cache
+    wire MEM_READ,MEM_WRITE;  // Memory read/write control signals
+    wire MEM_BUSYWAIT;        // Memory busy signal to cache
 
     
     /* 
@@ -51,9 +56,9 @@ module cpu_tb;
     
     // Instanciate CPU
     cpu mycpu(PC, INSTRUCTION, CLK, RESET,READ,WRITE,BUSYWAIT,ADDRESS,WRITEDATA,READDATA); 
-    // CALL THE CACHE
+    // Instantiate the cache module
     CACHE cache_unit(CLK,BUSYWAIT,READ,WRITE,WRITEDATA,READDATA,ADDRESS,RESET_MEM,MEM_BUSYWAIT,MEM_READ,MEM_WRITE,MEM_WRITEDATA,MEM_READDATA,MEM_ADDRESS);
-    // Instanciate Data Memory
+    // Instantiate the data memory 
     data_memory data_memory_unit(CLK,RESET_MEM,MEM_READ,MEM_WRITE,MEM_ADDRESS,MEM_WRITEDATA,MEM_READDATA,MEM_BUSYWAIT);
 
     initial

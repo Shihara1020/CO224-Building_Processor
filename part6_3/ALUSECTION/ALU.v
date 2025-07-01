@@ -6,6 +6,7 @@
 // Include external modules
 `include "ALUSECTION/multiplier.v"
 `include "ALUSECTION/logicalshift.v"
+`timescale  1ns/100ps
 
 //========== ALU OPERATION ENCODING ==========
 /*

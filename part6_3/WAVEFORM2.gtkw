@@ -1,0 +1,119 @@
+[*]
+[*] GTKWave Analyzer v3.3.116 (w)1999-2023 BSI
+[*] Mon Jun 30 15:59:25 2025
+[*]
+[dumpfile] "/mnt/c/Users/eranj/Desktop/ACADAMIC FOLDER/Fourth Semester/CO224-COMPUTER ARCHITECTURE/Building_Prosessor/part6_2/cpu_wavedata.vcd"
+[dumpfile_mtime] "Mon Jun 30 13:06:40 2025"
+[dumpfile_size] 78489
+[savefile] "/mnt/c/Users/eranj/Desktop/ACADAMIC FOLDER/Fourth Semester/CO224-COMPUTER ARCHITECTURE/Building_Prosessor/part6_2/WAVEFORM2.gtkw"
+[timestart] 578690
+[size] 1269 930
+[pos] 32847 32819
+*-13.200000 597000 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
+[treeopen] cpu_tb.
+[treeopen] cpu_tb.cache_unit.
+[treeopen] cpu_tb.mycpu.
+[sst_width] 276
+[signals_width] 198
+[sst_expanded] 1
+[sst_vpaned_height] 364
+@28
+cpu_tb.CLK
+@24
+cpu_tb.PC[31:0]
+@200
+-INSTRUCTION DECODE
+@28
+cpu_tb.mycpu.DECODER.INSTRUCTION[31:0]
+@200
+-ALU UNIT
+@24
+cpu_tb.mycpu.ALU.DATA1[7:0]
+cpu_tb.mycpu.ALU.DATA2[7:0]
+cpu_tb.mycpu.ALU.RESULT[7:0]
+@200
+-REGISTER
+@22
+cpu_tb.mycpu.REGFILE.\registers[4][7:0]
+cpu_tb.mycpu.REGFILE.\registers[5][7:0]
+cpu_tb.mycpu.REGFILE.\registers[6][7:0]
+cpu_tb.mycpu.REGFILE.\registers[7][7:0]
+@200
+-CACHE
+@28
+cpu_tb.cache_unit.BUSYWAIT
+cpu_tb.mycpu.control.HOLD
+@29
+cpu_tb.mycpu.PCUNIT.HOLD
+@28
+cpu_tb.cache_unit.WRITE
+cpu_tb.cache_unit.READ
+@22
+cpu_tb.cache_unit.ADDRESS[7:0]
+cpu_tb.cache_unit.WRITEDATA[7:0]
+cpu_tb.cache_unit.READDATA[7:0]
+cpu_tb.cache_unit.\data_array[0][31:0]
+@200
+-INDEXING
+@28
+cpu_tb.cache_unit.DIRTY
+cpu_tb.cache_unit.VALID
+cpu_tb.cache_unit.TARGET_TAG[2:0]
+@c00022
+cpu_tb.cache_unit.DATABLOCK[31:0]
+@28
+(0)cpu_tb.cache_unit.DATABLOCK[31:0]
+(1)cpu_tb.cache_unit.DATABLOCK[31:0]
+(2)cpu_tb.cache_unit.DATABLOCK[31:0]
+(3)cpu_tb.cache_unit.DATABLOCK[31:0]
+(4)cpu_tb.cache_unit.DATABLOCK[31:0]
+(5)cpu_tb.cache_unit.DATABLOCK[31:0]
+(6)cpu_tb.cache_unit.DATABLOCK[31:0]
+(7)cpu_tb.cache_unit.DATABLOCK[31:0]
+(8)cpu_tb.cache_unit.DATABLOCK[31:0]
+(9)cpu_tb.cache_unit.DATABLOCK[31:0]
+(10)cpu_tb.cache_unit.DATABLOCK[31:0]
+(11)cpu_tb.cache_unit.DATABLOCK[31:0]
+(12)cpu_tb.cache_unit.DATABLOCK[31:0]
+(13)cpu_tb.cache_unit.DATABLOCK[31:0]
+(14)cpu_tb.cache_unit.DATABLOCK[31:0]
+(15)cpu_tb.cache_unit.DATABLOCK[31:0]
+(16)cpu_tb.cache_unit.DATABLOCK[31:0]
+(17)cpu_tb.cache_unit.DATABLOCK[31:0]
+(18)cpu_tb.cache_unit.DATABLOCK[31:0]
+(19)cpu_tb.cache_unit.DATABLOCK[31:0]
+(20)cpu_tb.cache_unit.DATABLOCK[31:0]
+(21)cpu_tb.cache_unit.DATABLOCK[31:0]
+(22)cpu_tb.cache_unit.DATABLOCK[31:0]
+(23)cpu_tb.cache_unit.DATABLOCK[31:0]
+(24)cpu_tb.cache_unit.DATABLOCK[31:0]
+(25)cpu_tb.cache_unit.DATABLOCK[31:0]
+(26)cpu_tb.cache_unit.DATABLOCK[31:0]
+(27)cpu_tb.cache_unit.DATABLOCK[31:0]
+(28)cpu_tb.cache_unit.DATABLOCK[31:0]
+(29)cpu_tb.cache_unit.DATABLOCK[31:0]
+(30)cpu_tb.cache_unit.DATABLOCK[31:0]
+(31)cpu_tb.cache_unit.DATABLOCK[31:0]
+@1401200
+-group_end
+@200
+-hit or not
+@28
+cpu_tb.cache_unit.tag_comp
+cpu_tb.cache_unit.VALID
+cpu_tb.cache_unit.HIT
+cpu_tb.cache_unit.state[2:0]
+cpu_tb.cache_unit.next_state[2:0]
+@200
+-DATA MEMORY
+@28
+cpu_tb.data_memory_unit.read
+cpu_tb.data_memory_unit.write
+@22
+cpu_tb.data_memory_unit.readdata[31:0]
+cpu_tb.data_memory_unit.writedata[31:0]
+@28
+cpu_tb.data_memory_unit.busywait
+cpu_tb.data_memory_unit.address[5:0]
+[pattern_trace] 1
+[pattern_trace] 0

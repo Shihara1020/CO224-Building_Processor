@@ -1,4 +1,4 @@
-
+`timescale  1ns/100ps
 //================Built Multiply Module================
 
 // Half Adder Module

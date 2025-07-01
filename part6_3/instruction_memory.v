@@ -11,7 +11,7 @@
 // [7:0]   - IMMEDIATE  (8 bits)  - Immediate value/constant
 // [2:0]   - READREG2   (3 bits)  - Second source register address
 //============================================================================
-
+`timescale  1ns/100ps
 module Instruction_decode(INSTRUCTION,OPCODE,IMMEDIATE,READREG1,READREG2,WRITEREG,OFFSET);
 
     //========== INPUT PORT DECLARATIONS ==========
