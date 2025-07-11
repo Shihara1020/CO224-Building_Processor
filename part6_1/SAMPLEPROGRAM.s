@@ -1,6 +1,5 @@
-loadi 0 0x0B    
-loadi 1 0x01
-loadi 2 0x05    
-swd 0 1       
-swi 2 0x02    
-lwd 3 1            
+loadi 4 0x05    
+loadi 5 0x03  
+loadi 7 0x07   
+swi 4 0x00          
+lwi 6 0x00   //Read hit 

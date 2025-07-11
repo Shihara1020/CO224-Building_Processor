@@ -1,61 +1,50 @@
 [*]
 [*] GTKWave Analyzer v3.3.116 (w)1999-2023 BSI
-[*] Mon Jun 23 16:39:22 2025
+[*] Wed Jul  9 13:14:08 2025
 [*]
-[dumpfile] "/mnt/c/Users/eranj/Desktop/ACADAMIC FOLDER/Fourth Semester/CO224-COMPUTER ARCHITECTURE/Building_Prosessor/part6/cpu_wavedata.vcd"
-[dumpfile_mtime] "Mon Jun 23 16:15:49 2025"
-[dumpfile_size] 12405
-[savefile] "/mnt/c/Users/eranj/Desktop/ACADAMIC FOLDER/Fourth Semester/CO224-COMPUTER ARCHITECTURE/Building_Prosessor/part6/WAVEFORM.gtkw"
+[dumpfile] "/mnt/c/Users/eranj/Desktop/ACADAMIC FOLDER/Fourth Semester/CO224-COMPUTER ARCHITECTURE/Building_Prosessor/part6_1/cpu_wavedata.vcd"
+[dumpfile_mtime] "Wed Jul  9 13:10:31 2025"
+[dumpfile_size] 55832
+[savefile] "/mnt/c/Users/eranj/Desktop/ACADAMIC FOLDER/Fourth Semester/CO224-COMPUTER ARCHITECTURE/Building_Prosessor/part6_1/WAVEFORM.gtkw"
 [timestart] 0
-[size] 1000 600
-[pos] -14 53
+[size] 1644 902
+[pos] 30 48
 *-2.700000 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
 [treeopen] cpu_tb.
 [treeopen] cpu_tb.mycpu.
 [sst_width] 276
 [signals_width] 174
 [sst_expanded] 1
-[sst_vpaned_height] 213
+[sst_vpaned_height] 355
 @28
 cpu_tb.CLK
 @24
 cpu_tb.PC[31:0]
 @200
 -INSTRUCTION DECODE
-@28
+@22
 cpu_tb.mycpu.DECODER.INSTRUCTION[31:0]
-@24
-cpu_tb.mycpu.DECODER.OPCODE[7:0]
-cpu_tb.mycpu.DECODER.OFFSET[7:0]
-cpu_tb.mycpu.DECODER.IMMEDIATE[7:0]
-cpu_tb.mycpu.DECODER.READREG1[2:0]
-cpu_tb.mycpu.DECODER.READREG2[2:0]
-cpu_tb.mycpu.DECODER.WRITEREG[2:0]
-@200
--CONTROL UNIT
-@28
-cpu_tb.mycpu.control.ALUOP[2:0]
-cpu_tb.mycpu.control.BUSYWAIT
-cpu_tb.mycpu.control.READ
-cpu_tb.mycpu.control.WRITE
-cpu_tb.mycpu.control.WRITESRC
-cpu_tb.mycpu.control.WRITEENABLE
-@200
--ALU UNIT
-@24
-cpu_tb.mycpu.ALU.RESULT[7:0]
 @200
 -REGISTER
-@24
-cpu_tb.mycpu.REGFILE.register0[7:0]
-cpu_tb.mycpu.REGFILE.register1[7:0]
-cpu_tb.mycpu.REGFILE.register2[7:0]
-cpu_tb.mycpu.REGFILE.register3[7:0]
-cpu_tb.mycpu.REGFILE.register4[7:0]
-cpu_tb.mycpu.REGFILE.register5[7:0]
-cpu_tb.mycpu.REGFILE.register6[7:0]
-cpu_tb.mycpu.REGFILE.register7[7:0]
-@201
+@22
+cpu_tb.mycpu.REGFILE.\registers[0][7:0]
+cpu_tb.mycpu.REGFILE.\registers[1][7:0]
+cpu_tb.mycpu.REGFILE.\registers[2][7:0]
+cpu_tb.mycpu.REGFILE.\registers[3][7:0]
+cpu_tb.mycpu.REGFILE.\registers[4][7:0]
+cpu_tb.mycpu.REGFILE.\registers[5][7:0]
+cpu_tb.mycpu.REGFILE.\registers[6][7:0]
+cpu_tb.mycpu.REGFILE.\registers[7][7:0]
+@200
 -MEMORY
+@28
+cpu_tb.data_memory_unit.read
+cpu_tb.data_memory_unit.write
+cpu_tb.data_memory_unit.busywait
+@25
+cpu_tb.data_memory_unit.address[7:0]
+@22
+cpu_tb.data_memory_unit.readdata[7:0]
+cpu_tb.data_memory_unit.writedata[7:0]
 [pattern_trace] 1
 [pattern_trace] 0

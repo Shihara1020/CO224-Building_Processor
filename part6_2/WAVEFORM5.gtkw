@@ -1,15 +1,15 @@
 [*]
 [*] GTKWave Analyzer v3.3.116 (w)1999-2023 BSI
-[*] Mon Jun 30 15:59:44 2025
+[*] Wed Jul  9 04:38:17 2025
 [*]
 [dumpfile] "/mnt/c/Users/eranj/Desktop/ACADAMIC FOLDER/Fourth Semester/CO224-COMPUTER ARCHITECTURE/Building_Prosessor/part6_2/cpu_wavedata.vcd"
-[dumpfile_mtime] "Mon Jun 30 13:06:40 2025"
-[dumpfile_size] 78489
+[dumpfile_mtime] "Wed Jul  9 04:29:01 2025"
+[dumpfile_size] 77665
 [savefile] "/mnt/c/Users/eranj/Desktop/ACADAMIC FOLDER/Fourth Semester/CO224-COMPUTER ARCHITECTURE/Building_Prosessor/part6_2/WAVEFORM5.gtkw"
-[timestart] 578690
+[timestart] 190180
 [size] 1269 930
-[pos] 32847 32819
-*-13.200000 597000 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
+[pos] 33205 32859
+*-13.200000 205840 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
 [treeopen] cpu_tb.
 [treeopen] cpu_tb.cache_unit.
 [treeopen] cpu_tb.mycpu.
@@ -26,26 +26,18 @@ cpu_tb.PC[31:0]
 @28
 cpu_tb.mycpu.DECODER.INSTRUCTION[31:0]
 @200
--ALU UNIT
-@24
-cpu_tb.mycpu.ALU.DATA1[7:0]
-cpu_tb.mycpu.ALU.DATA2[7:0]
-cpu_tb.mycpu.ALU.RESULT[7:0]
-@200
 -REGISTER
 @22
 cpu_tb.mycpu.REGFILE.\registers[4][7:0]
 cpu_tb.mycpu.REGFILE.\registers[5][7:0]
+@24
 cpu_tb.mycpu.REGFILE.\registers[6][7:0]
+@22
 cpu_tb.mycpu.REGFILE.\registers[7][7:0]
 @200
 -CACHE
 @28
 cpu_tb.cache_unit.BUSYWAIT
-cpu_tb.mycpu.control.HOLD
-@29
-cpu_tb.mycpu.PCUNIT.HOLD
-@28
 cpu_tb.cache_unit.WRITE
 cpu_tb.cache_unit.READ
 @22
@@ -98,8 +90,9 @@ cpu_tb.cache_unit.DATABLOCK[31:0]
 -group_end
 @200
 -hit or not
-@28
+@29
 cpu_tb.cache_unit.tag_comp
+@28
 cpu_tb.cache_unit.VALID
 cpu_tb.cache_unit.HIT
 cpu_tb.cache_unit.state[2:0]

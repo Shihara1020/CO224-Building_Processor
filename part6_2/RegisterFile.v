@@ -14,7 +14,7 @@ module reg_file(IN,OUT1,OUT2,INADDRESS,OUT1ADDRESS,OUT2ADDRESS,WRITE,CLK,RESET,H
     input CLK;                  // Clock signal for synchronous operations
     input RESET;                // Reset signal (active high) - clears all registers
     input WRITE;                // Write enable signal (active high)
-    input HOLD;
+    input HOLD;                 // Used to stall register updates 
     
     //========== OUTPUT PORT DECLARATIONS ==========
     output signed[7:0] OUT2;  // 8-bit signed data from second read port
@@ -54,7 +54,7 @@ module reg_file(IN,OUT1,OUT2,INADDRESS,OUT1ADDRESS,OUT2ADDRESS,WRITE,CLK,RESET,H
     initial begin
 		#5;
 		$display("\n\t\t\t___________________________________________________");
-		$display("\n\t\t\t CHANGE OF REGISTER CONTENT STARTING FROM TIME #5");
+		$display("\n\t\t\t\t\t CHANGE OF REGISTER VALUES");
 		$display("\n\t\t\t___________________________________________________\n");
 		$display("\t\ttime\treg0\treg1\treg2\treg3\treg4\treg5\treg6\treg7");
 		$display("\t\t____________________________________________________________________");
