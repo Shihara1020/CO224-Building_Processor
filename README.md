@@ -2,7 +2,7 @@
 
 ![Computer Architecture](https://img.shields.io/badge/Computer-Architecture-blue) 
 ![Verilog](https://img.shields.io/badge/Verilog-HDL-orange) 
-![8-bit CPU](https://img.shields.io/badge/8-bit-CPU-green)
+
 
 This repository contains my implementations for the **CO224 Computer Architecture labs** (Lab 5 and Lab 6) from the Department of Computer Engineering, University of Peradeniya. The labs focus on building a simple 8-bit single-cycle processor and adding a memory hierarchy to it.
 
