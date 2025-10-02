@@ -2,7 +2,8 @@
 
 ![Computer Architecture](https://img.shields.io/badge/Computer-Architecture-blue) 
 ![Verilog](https://img.shields.io/badge/Verilog-HDL-orange) 
-![8-bit CPU](./part5/DESIGNING/OVEROLLCPU.png)
+
+<img src="./part5/DESIGNING/OVEROLLCPU.png" alt="8-bit CPU Architecture" width="600" height="400">
 
 8-bit single-cycle processor implementation in Verilog HDL for CO224 Computer Architecture course at University of Peradeniya.
 
